@@ -435,6 +435,9 @@ export const BOATS: Boat[] = [
     length: '11.90m',
     capacity: 12,
     imageUrl: '/images/Hedonist-1.webp',
+    gallery: [
+      '/images/Hedonist-1.webp'
+    ],
     description: 'The Carnevali 36S Superyacht defines the ultimate expression of Adriatic luxury and maritime sophistication. This extraordinary flybridge yacht is spacious, lavishly appointed, and impeccably maintained, providing an unparalleled setting for your exclusive coastal escapes. Complete with luxurious cabins, expansive sun decks, and an experienced professional crew, the Carnevali 36S guarantees a truly VIP hedonistic voyage—perfect for hosting unforgettable celebrations, high-end corporate retreats, or romantic multi-day itineraries in complete comfort.',
     specs: [
       { label: 'Length', value: '11.90m' },
