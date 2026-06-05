@@ -29,7 +29,7 @@ export function FleetSection({ boats, onBook }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedBoat, setSelectedBoat] = useState<Boat | null>(null);
   const [showAllAmenities, setShowAllAmenities] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
   const handleDragEnd = (_e: any, info: PanInfo) => {
     const threshold = 50;
@@ -126,18 +126,7 @@ export function FleetSection({ boats, onBook }: Props) {
                     <span className="px-3 py-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20 text-white text-xs font-semibold shadow-xl whitespace-nowrap">
                       Up to {boat.capacity} guests
                     </span>
-                    <span className="px-3 py-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20 text-white text-xs font-semibold shadow-xl whitespace-nowrap">
-                      From {getMinPrice(boat)}$
-                    </span>
                   </div>
-                  {boat.id === "gaia-22" && (
-                    <div className="flex-shrink-0 px-3 py-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20 flex items-center gap-2 shadow-xl whitespace-nowrap">
-                      <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                      <span className="text-white text-[10px] font-bold uppercase tracking-wide">
-                        Available
-                      </span>
-                    </div>
-                  )}
                 </div>
 
                 {/* Bottom Content */}
@@ -351,7 +340,7 @@ export function FleetSection({ boats, onBook }: Props) {
                         {selectedBoat.gallery.map((imgUrl, idx) => (
                           <div
                             key={idx}
-                            onClick={() => setSelectedImage(imgUrl)}
+                            onClick={() => setSelectedImageIndex(idx)}
                             className="w-[280px] h-[200px] sm:w-[360px] sm:h-[240px] rounded-[24px] overflow-hidden flex-shrink-0 shadow-lg snap-center border border-white/5 cursor-pointer"
                           >
                             <img
@@ -611,8 +600,8 @@ export function FleetSection({ boats, onBook }: Props) {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {selectedImage && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-8" onClick={() => setSelectedImage(null)}>
+        {selectedImageIndex !== null && selectedBoat && selectedBoat.gallery && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-8" onClick={() => setSelectedImageIndex(null)}>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -620,18 +609,82 @@ export function FleetSection({ boats, onBook }: Props) {
               transition={{ duration: 0.2 }}
               className="relative w-full max-w-6xl h-full flex flex-col justify-center items-center"
               onClick={(e) => e.stopPropagation()}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.6}
+              onDragEnd={(_e, info) => {
+                const threshold = 50;
+                if (info.offset.x < -threshold) {
+                  setSelectedImageIndex((prev) => 
+                    prev !== null ? (prev + 1) % selectedBoat.gallery!.length : null
+                  );
+                } else if (info.offset.x > threshold) {
+                  setSelectedImageIndex((prev) => 
+                    prev !== null ? (prev - 1 + selectedBoat.gallery!.length) % selectedBoat.gallery!.length : null
+                  );
+                }
+              }}
             >
               <button
-                className="absolute top-4 right-4 sm:top-0 sm:right-0 w-12 h-12 bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white z-10"
-                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 sm:top-0 sm:right-0 w-12 h-12 bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white z-20"
+                onClick={() => setSelectedImageIndex(null)}
               >
                 <XIcon />
               </button>
-              <img
-                src={selectedImage}
-                className="w-full h-full object-contain drop-shadow-2xl max-h-[85vh] sm:max-h-full"
-                alt="Enlarged view"
-              />
+
+              {selectedBoat.gallery.length > 1 && (
+                <button
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white z-20"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedImageIndex((prev) => 
+                      prev !== null ? (prev - 1 + selectedBoat.gallery!.length) % selectedBoat.gallery!.length : null
+                    );
+                  }}
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </button>
+              )}
+
+              {selectedBoat.gallery.length > 1 && (
+                <button
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white z-20"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedImageIndex((prev) => 
+                      prev !== null ? (prev + 1) % selectedBoat.gallery!.length : null
+                    );
+                  }}
+                >
+                  <ArrowLeft className="w-5 h-5 rotate-180" />
+                </button>
+              )}
+
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={selectedImageIndex}
+                  src={selectedBoat.gallery[selectedImageIndex]}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-full h-full object-contain drop-shadow-2xl max-h-[85vh] sm:max-h-full pointer-events-none"
+                  alt="Enlarged view"
+                />
+              </AnimatePresence>
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                {selectedBoat.gallery.map((_, idx) => (
+                  <div
+                    key={idx}
+                    className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 ${
+                      idx === selectedImageIndex
+                        ? "bg-[#E8E4DF]"
+                        : "bg-[#E8E4DF]/20"
+                    }`}
+                  />
+                ))}
+              </div>
             </motion.div>
           </div>
         )}

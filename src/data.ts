@@ -8,7 +8,7 @@ export const BOATS: Boat[] = [
     type: 'Center-Console RIB',
     length: '6.58m',
     capacity: 12,
-    imageUrl: 'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80',
+    imageUrl: '/images/Master660.webp',
     description: 'The Master 660 Open is a premier center-console RIB that blends exhilarating sports performance with uncompromising comfort on the open water. Tailored for family outings, coastal exploration, or adventurous day trips, this versatile vessel boasts exceptional agility and a spacious deck layout. With modern navigation amenities and superior sea-keeping capabilities, the Master 660 ensures an unforgettable nautical experience, making it the perfect choice for discovering hidden bays and pristine waters along the stunning Adriatic coastline.',
     specs: [
       { label: 'Length', value: '6.58m' },
@@ -236,7 +236,7 @@ export const BOATS: Boat[] = [
     tagline: 'The Performance Cruiser',
     type: 'Walkaround Sports Cruiser',
     length: '6.75m',
-    capacity: 8,
+    capacity: 12,
     imageUrl: '/images/Gaia_22_spotlight.webp',
     gallery: [
       '/images/Gaia_22_spotlight.webp',
@@ -244,7 +244,13 @@ export const BOATS: Boat[] = [
       '/images/Hedonist_final-19.webp',
       '/images/Hedonist_final-38.webp',
       '/images/Hedonist_final-47.webp',
-      '/images/Hedonist_final-50.webp'
+      '/images/Hedonist_final-50.webp',
+      '/images/Gaia_detail.webp',
+      '/images/Gaia_from_carnevali.webp',
+      '/images/Gaia_otok.webp',
+      '/images/Gaia_pano_porec.webp',
+      '/images/Hedo_gaia_volan.webp',
+      '/images/Hedonist_gaia_detail.webp'
     ],
     description: 'Experience the ultimate thrill of the sea with the Gaia 22 Open, a high-performance sports cruiser engineered for both speed and refined comfort. Designed with a sleek, aerodynamic profile and powered by robust outboard engines, this walkaround cruiser offers swift and smooth passages across the water. Whether you\'re planning an exclusive island-hopping adventure or a tranquil sunset voyage, the Gaia 22 provides ample deck space and sophisticated Italian styling, making it an exceptional vessel for those who demand performance without sacrificing elegance.',
     specs: [
@@ -436,7 +442,19 @@ export const BOATS: Boat[] = [
     capacity: 12,
     imageUrl: '/images/Hedonist-1.webp',
     gallery: [
-      '/images/Hedonist-1.webp'
+      '/images/Hedonist-1.webp',
+      '/images/Carnevali_inside1.webp',
+      '/images/Carnevali_inside10.webp',
+      '/images/Carnevali_inside11.webp',
+      '/images/Carnevali_inside3.webp',
+      '/images/Carnevali_inside6.webp',
+      '/images/Carnevali_inside7.webp',
+      '/images/Carnevali_inside8.webp',
+      '/images/Carnevali_inside9.webp',
+      '/images/Carnevali_inside_4.webp',
+      '/images/Carnevali_inside_5.webp',
+      '/images/Carnevali_outiside.webp',
+      '/images/carnevali_inside2.webp'
     ],
     description: 'The Carnevali 36S Superyacht defines the ultimate expression of Adriatic luxury and maritime sophistication. This extraordinary flybridge yacht is spacious, lavishly appointed, and impeccably maintained, providing an unparalleled setting for your exclusive coastal escapes. Complete with luxurious cabins, expansive sun decks, and an experienced professional crew, the Carnevali 36S guarantees a truly VIP hedonistic voyage—perfect for hosting unforgettable celebrations, high-end corporate retreats, or romantic multi-day itineraries in complete comfort.',
     specs: [
