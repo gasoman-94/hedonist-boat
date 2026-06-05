@@ -1,5 +1,6 @@
 import React from "react";
 import { ChevronDown } from "lucide-react";
+import { BOATS, ALL_EXCURSIONS } from "../data";
 
 export function IntroSection() {
   const handleScroll = () => {
@@ -17,7 +18,7 @@ export function IntroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/Hedonist_final-35.jpg"
+          src="/images/Hedonist_final-35.webp"
           alt="Intro Background"
           className="w-full h-full object-cover object-center opacity-50"
         />
@@ -45,6 +46,22 @@ export function IntroSection() {
         </div>
       </div>
 
+      {/* Stats Area */}
+      <div className="absolute top-1/2 -translate-y-1/2 w-full px-4 sm:px-12 z-10 flex flex-row flex-wrap sm:flex-nowrap justify-center items-center gap-4 sm:gap-8 max-w-7xl mx-auto pointer-events-auto left-0 right-0">
+        <div className="flex flex-col items-center justify-center p-4 sm:p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-[24px] w-28 sm:w-40 shadow-xl">
+          <span className="text-3xl sm:text-5xl font-semibold text-white drop-shadow-md mb-1 sm:mb-2 leading-none">{BOATS.length}</span>
+          <span className="text-[10px] sm:text-xs text-[#D6BB8A] uppercase tracking-[0.15em] font-bold">Boats</span>
+        </div>
+        <div className="flex flex-col items-center justify-center p-4 sm:p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-[24px] w-28 sm:w-40 shadow-xl">
+          <span className="text-3xl sm:text-5xl font-semibold text-white drop-shadow-md mb-1 sm:mb-2 leading-none">{ALL_EXCURSIONS.length}</span>
+          <span className="text-[10px] sm:text-xs text-[#D6BB8A] uppercase tracking-[0.15em] font-bold">Trips</span>
+        </div>
+        <div className="flex flex-col items-center justify-center p-4 sm:p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-[24px] w-28 sm:w-40 shadow-xl">
+          <span className="text-3xl sm:text-5xl font-semibold text-white drop-shadow-md mb-1 sm:mb-2 leading-none">50+</span>
+          <span className="text-[10px] sm:text-xs text-[#D6BB8A] uppercase tracking-[0.15em] font-bold">Locations</span>
+        </div>
+      </div>
+
       {/* Bottom Text Area */}
       <div className="absolute bottom-28 sm:bottom-32 left-0 right-0 w-full px-6 sm:px-12 z-10 flex flex-col justify-end max-w-7xl mx-auto pointer-events-none">
         <div className="pb-4 pointer-events-auto">
@@ -54,8 +71,8 @@ export function IntroSection() {
             and captain your own adventure, join our expert crew for curated{" "}
             <strong className="text-white font-semibold">guided tours</strong>,
             or simply require a reliable{" "}
-            <strong className="text-white font-semibold">water taxi</strong>{" "}
-            transfer, we offer an uncompromising experience.
+            <strong className="text-white font-semibold">boat transfer</strong>,
+            we offer an uncompromising experience.
           </p>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { FleetSection } from './components/FleetSection';
 import { ExcursionsSection } from './components/ExcursionsSection';
 import { TaxiSection } from './components/TaxiSection';
 import { BookingEngine } from './components/BookingEngine';
+import { Footer } from './components/Footer';
 import { BOATS, ALL_EXCURSIONS } from './data';
 
 /**
@@ -25,41 +26,36 @@ export default function App() {
   };
 
   return (
-    <div className="font-sans text-neutral-100 bg-[#0B0C10] h-[100svh] overflow-y-auto overflow-x-hidden snap-y snap-mandatory selection:bg-[#1a1d24]">
+    <div id="main-scroll-container" className="font-sans text-neutral-100 bg-[#0B0C10] h-[100svh] overflow-y-auto overflow-x-hidden snap-y snap-mandatory selection:bg-[#1a1d24]">
       <Nav />
-      <div className="snap-start snap-always w-full min-h-[100svh]">
-        <Hero />
-      </div>
-      <main>
-        <div className="snap-start w-full min-h-[100svh] flex flex-col justify-center">
-          <IntroSection />
+        <div className="snap-start snap-always w-full min-h-[100svh]" id="home">
+          <Hero />
         </div>
-        <div className="snap-start w-full min-h-[100svh] flex flex-col justify-center">
-          <FleetSection boats={BOATS} onBook={handleBook} />
-        </div>
-        <div className="snap-start w-full min-h-[100svh] flex flex-col justify-center">
-          <ExcursionsSection excursions={ALL_EXCURSIONS} boats={BOATS} onBook={handleBook} />
-        </div>
-        <TaxiSection boats={BOATS} onBook={handleBook} />
-        <div className="snap-start w-full min-h-[100svh] flex flex-col justify-center" ref={bookingRef} id="booking-engine">
-          <BookingEngine 
-            boats={BOATS} 
-            selectedBoatId={selectedBoatId} 
-            selectedServiceId={selectedServiceId}
-            onBoatChange={setSelectedBoatId}
-            onServiceChange={setSelectedServiceId}
-          />
-          <footer className="bg-[#050608] border-t border-white/5 px-6 md:px-12 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-xs text-white/40 font-medium tracking-wide">
-              &copy; {new Date().getFullYear()} Poreč Charters
+        <main>
+          <div className="snap-start w-full min-h-[100svh] flex flex-col justify-center" id="intro">
+            <IntroSection />
+          </div>
+          <div className="snap-start w-full min-h-[100svh] flex flex-col justify-center" id="fleet">
+            <FleetSection boats={BOATS} onBook={handleBook} />
+          </div>
+          <div className="snap-start w-full min-h-[100svh] flex flex-col" id="excursions">
+            <ExcursionsSection excursions={ALL_EXCURSIONS} boats={BOATS} onBook={handleBook} />
+          </div>
+          <div id="taxi">
+            <TaxiSection boats={BOATS} onBook={handleBook} />
+          </div>
+          <div className="snap-start w-full min-h-[100svh] flex flex-col justify-between" ref={bookingRef} id="booking-engine">
+            <div className="flex-1 flex flex-col justify-center">
+              <BookingEngine 
+                boats={BOATS} 
+                selectedBoatId={selectedBoatId} 
+                selectedServiceId={selectedServiceId}
+                onBoatChange={setSelectedBoatId}
+                onServiceChange={setSelectedServiceId}
+              />
             </div>
-            <div className="flex gap-8 text-xs font-bold text-white/50">
-              <span className="hover:text-white cursor-pointer transition-colors">Instagram</span>
-              <span className="hover:text-white cursor-pointer transition-colors">Terms</span>
-              <span className="hover:text-white cursor-pointer transition-colors">Contact</span>
-            </div>
-          </footer>
-        </div>
+            <Footer />
+          </div>
       </main>
     </div>
   );

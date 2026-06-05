@@ -1,6 +1,6 @@
 {
-  "name": "Poreč Luxury Yacht Charters",
-  "description": "Premium boutique travel lookbook and booking engine for luxury boat rentals and excursions in Poreč.",
+  "name": "Hedonist Boat Charter",
+  "description": "Premium boutique travel lookbook and booking engine for luxury boat rentals and excursions.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

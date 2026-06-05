@@ -238,6 +238,14 @@ export const BOATS: Boat[] = [
     length: '6.75m',
     capacity: 8,
     imageUrl: '/images/Gaia_22_spotlight.webp',
+    gallery: [
+      '/images/Gaia_22_spotlight.webp',
+      '/images/Gaia_dolphin.webp',
+      '/images/Hedonist_final-19.webp',
+      '/images/Hedonist_final-38.webp',
+      '/images/Hedonist_final-47.webp',
+      '/images/Hedonist_final-50.webp'
+    ],
     description: 'Experience the ultimate thrill of the sea with the Gaia 22 Open, a high-performance sports cruiser engineered for both speed and refined comfort. Designed with a sleek, aerodynamic profile and powered by robust outboard engines, this walkaround cruiser offers swift and smooth passages across the water. Whether you\'re planning an exclusive island-hopping adventure or a tranquil sunset voyage, the Gaia 22 provides ample deck space and sophisticated Italian styling, making it an exceptional vessel for those who demand performance without sacrificing elegance.',
     specs: [
       { label: 'Length', value: '6.75m' },
@@ -395,7 +403,7 @@ export const BOATS: Boat[] = [
       },
       {
          id: 'g22-taxi',
-         title: 'Premium Water Taxi',
+         title: 'Premium Boat Transfer',
          type: 'taxi',
          boatId: 'gaia-22',
          description: 'Fast, secure transfers between popular coastal destinations.',
@@ -426,7 +434,7 @@ export const BOATS: Boat[] = [
     type: 'Flybridge Yacht',
     length: '11.90m',
     capacity: 12,
-    imageUrl: '/images/Hedonist-1.jpg',
+    imageUrl: '/images/Hedonist-1.webp',
     description: 'The Carnevali 36S Superyacht defines the ultimate expression of Adriatic luxury and maritime sophistication. This extraordinary flybridge yacht is spacious, lavishly appointed, and impeccably maintained, providing an unparalleled setting for your exclusive coastal escapes. Complete with luxurious cabins, expansive sun decks, and an experienced professional crew, the Carnevali 36S guarantees a truly VIP hedonistic voyage—perfect for hosting unforgettable celebrations, high-end corporate retreats, or romantic multi-day itineraries in complete comfort.',
     specs: [
       { label: 'Length', value: '11.90m' },

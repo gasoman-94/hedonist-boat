@@ -29,6 +29,7 @@ export function FleetSection({ boats, onBook }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedBoat, setSelectedBoat] = useState<Boat | null>(null);
   const [showAllAmenities, setShowAllAmenities] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const handleDragEnd = (_e: any, info: PanInfo) => {
     const threshold = 50;
@@ -64,7 +65,7 @@ export function FleetSection({ boats, onBook }: Props) {
             <h2 className="text-4xl md:text-5xl font-semibold text-white mb-3 tracking-tight">
               Our Fleet
             </h2>
-            <p className="text-white/70 text-sm md:text-base max-w-lg leading-relaxed">
+            <p className="text-white/70 text-sm md:text-base max-w-lg leading-[22px]">
               Discover our exquisite collection of premium vessels. Whether you
               prefer to rent a boat with or without a skipper, for a half-day
               adventure or a full-day experience, check out our fleet below and
@@ -341,24 +342,27 @@ export function FleetSection({ boats, onBook }: Props) {
                       </div>
                     )}
 
-                  <div className="mb-8">
-                    <h4 className="text-lg font-medium text-white flex gap-2 mb-4">
-                      Image <span className="text-[#D6BB8A]">Gallery</span>
-                    </h4>
-                    <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-6 px-6 snap-x snap-mandatory">
-                      {[1, 2, 3, 4].map((idx) => (
-                        <div
-                          key={idx}
-                          className="w-[280px] h-[200px] sm:w-[360px] sm:h-[240px] rounded-[24px] overflow-hidden flex-shrink-0 shadow-lg snap-center border border-white/5"
-                        >
-                          <img
-                            src={selectedBoat.imageUrl}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                          />
-                        </div>
-                      ))}
+                  {selectedBoat.gallery && selectedBoat.gallery.length > 0 && (
+                    <div className="mb-8">
+                      <h4 className="text-lg font-medium text-white flex gap-2 mb-4">
+                        Image <span className="text-[#D6BB8A]">Gallery</span>
+                      </h4>
+                      <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-6 px-6 snap-x snap-mandatory">
+                        {selectedBoat.gallery.map((imgUrl, idx) => (
+                          <div
+                            key={idx}
+                            onClick={() => setSelectedImage(imgUrl)}
+                            className="w-[280px] h-[200px] sm:w-[360px] sm:h-[240px] rounded-[24px] overflow-hidden flex-shrink-0 shadow-lg snap-center border border-white/5 cursor-pointer"
+                          >
+                            <img
+                              src={imgUrl}
+                              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                            />
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   {selectedBoat.pricingDetails && (
                     <div className="mb-24">
@@ -602,6 +606,32 @@ export function FleetSection({ boats, onBook }: Props) {
                   </div>
                 </div>
               </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {selectedImage && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-8" onClick={() => setSelectedImage(null)}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-full max-w-6xl h-full flex flex-col justify-center items-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="absolute top-4 right-4 sm:top-0 sm:right-0 w-12 h-12 bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white z-10"
+                onClick={() => setSelectedImage(null)}
+              >
+                <XIcon />
+              </button>
+              <img
+                src={selectedImage}
+                className="w-full h-full object-contain drop-shadow-2xl max-h-[85vh] sm:max-h-full"
+                alt="Enlarged view"
+              />
             </motion.div>
           </div>
         )}

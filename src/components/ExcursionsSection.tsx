@@ -11,6 +11,8 @@ import {
   MoreHorizontal,
   MapPin,
   Anchor,
+  Compass,
+  ChevronDown
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -31,15 +33,15 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
 
   const getImageUrl = (id: string, index: number) => {
     const images = [
-      "/images/Hedonist_final-38.jpg",
+      "/images/Hedonist_final-38.webp",
       "/images/swimming.jpg",
-      "/images/porec-panorama.jpg",
+      "/images/porec-panorama.webp",
       "/images/romantic-sunset-cruise.jpg",
-      "/images/Gaia_dolphin.jpg",
-      "/images/Hedonist_final-31.jpg",
-      "/images/dolphins%20sunset.jpg",
+      "/images/Gaia_dolphin.webp",
+      "/images/Hedonist_final-31.webp",
+      "/images/dolphins%20sunset.webp",
       "/images/shared%20dolphins.jpg",
-      "/images/bachelorette.png",
+      "/images/bachelorette.webp",
       "/images/wedding.jpg",
     ];
     return images[index % images.length];
@@ -59,45 +61,53 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
 
   return (
     <div id="experiences" className="w-full flex flex-col bg-[#0B0C10]">
-      <section className="relative min-h-[100svh] w-full flex flex-col items-center justify-center text-center overflow-hidden">
+      <section className="relative w-full min-h-[100svh] flex flex-col justify-start pt-20 sm:pt-24 lg:pt-32 overflow-hidden text-white font-sans px-0">
+        {/* Background Image layer - Consistent with Hero */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80"
+            src="/images/Hedonist_final-47.webp"
             alt="Excursions background"
             className="w-full h-full object-cover object-center opacity-40 scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10] via-black/30 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] from-10% via-transparent via-50% to-[#0B0C10] to-90%" />
         </div>
 
-        <div className="relative z-10 px-4 md:px-8 max-w-4xl mx-auto flex flex-col items-center mt-20">
-          <span className="text-[#D6BB8A] font-bold tracking-[0.2em] uppercase text-xs sm:text-sm mb-6 drop-shadow-md">
-            Curated Marine Experiences
-          </span>
-          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold text-white mb-6 md:mb-8 tracking-tight drop-shadow-xl leading-tight">
-            Unforgettable
-            <br />
-            Journeys
-          </h2>
-          <p className="text-white/80 text-base md:text-xl font-medium mb-10 md:mb-12 max-w-2xl leading-relaxed drop-shadow-md">
-            Discover the profound beauty of the Adriatic. From intimate sunset
-            cruises to exhilarating island-hopping adventures, our bespoke
-            excursions are tailored for those who seek extraordinary moments.
-          </p>
-          <button
-            onClick={() => {
-              document
-                .getElementById("experiences-grid")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="bg-[#D6BB8A] hover:bg-[#E5CDA3] text-black px-8 py-4 md:px-10 md:py-5 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest transition-all shadow-2xl hover:-translate-y-1"
-          >
-            Explore Excursions
-          </button>
+        {/* Content Area */}
+        <div className="relative w-full px-6 sm:px-12 z-10 flex flex-col items-start justify-start max-w-7xl mx-auto">
+          <div className="flex flex-col items-start pb-4 w-full max-w-[500px]">
+            <span className="text-[#D6BB8A] font-bold tracking-[0.2em] uppercase text-[10px] sm:text-xs mb-2 sm:mb-4 block drop-shadow-md">
+              Curated Marine Experiences
+            </span>
+            <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] font-semibold tracking-tight mb-2 sm:mb-4 drop-shadow-md text-white text-left leading-[1.1]">
+              Unforgettable Journeys
+            </h2>
+            <p className="text-white/90 text-[14px] leading-[22px] drop-shadow-sm mb-0 text-left font-medium pr-2">
+              Let us take the helm while you simply sit back and enjoy. From
+              intimate sunset cruises to exhilarating island-hopping adventures,
+              our bespoke, predefined tours with seasoned skippers are tailored
+              for those who want to discover the Adriatic in pure relaxation.
+            </p>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div 
+          onClick={() => document.getElementById("experiences-grid")?.scrollIntoView({ behavior: "smooth" })}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 cursor-pointer z-20 group"
+        >
+          <span className="text-[10px] sm:text-xs text-[#D6BB8A] uppercase tracking-[0.2em] font-bold group-hover:text-white transition-colors duration-300 drop-shadow-md">Explore Experiences</span>
+          <div className="w-[1px] h-16 sm:h-24 bg-white/20 relative overflow-hidden group-hover:bg-white/30 transition-colors">
+            <motion.div
+              className="w-full h-1/2 bg-[#D6BB8A] absolute top-0"
+              animate={{ y: ["-100%", "200%"] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+            />
+          </div>
         </div>
       </section>
 
       <section
-        className="w-full flex-col justify-center py-20 lg:py-32 overflow-hidden px-0 md:pl-8 lg:pl-12"
+        className="snap-start w-full min-h-[100svh] flex flex-col justify-center pt-8 pb-20 lg:pt-12 lg:pb-32 overflow-hidden px-0 md:pl-8 lg:pl-12"
         id="experiences-grid"
       >
         <div className="w-full max-w-[1800px] mx-auto">

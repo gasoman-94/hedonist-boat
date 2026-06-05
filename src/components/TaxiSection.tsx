@@ -40,7 +40,7 @@ export function TaxiSection({ boats, onBook }: Props) {
   );
 
   const handleWhatsApp = () => {
-    const text = `Hello! I would like to request a Water Taxi.\n\nPick-up: Poreč Harbour\nDrop-off: ${selectedRoute.description}\nPassengers: ${passengers}\nTotal Price Overview: €${totalPrice}`;
+    const text = `Hello! I would like to request a Boat Transfer.\n\nPick-up: Poreč Harbour\nDrop-off: ${selectedRoute.description}\nPassengers: ${passengers}\nTotal Price Overview: €${totalPrice}`;
     const encodedText = encodeURIComponent(text);
     window.open(`https://wa.me/385995919005?text=${encodedText}`, "_blank");
   };
@@ -54,18 +54,18 @@ export function TaxiSection({ boats, onBook }: Props) {
         {/* Background Image Slide 1 */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/Hedonist_final-19.jpg"
-            alt="Water Taxi"
+            src="/images/Hedonist_final-19.webp"
+            alt="Boat Transfer"
             className="w-full h-full object-cover opacity-100"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] via-transparent to-[#0B0C10]/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] via-transparent via-60% to-[#0B0C10] to-100%" />
         </div>
 
         {/* Bottom Content Area */}
         <div className="absolute bottom-6 sm:bottom-10 left-0 right-0 w-full px-6 sm:px-12 z-10 flex items-end justify-between max-w-7xl mx-auto gap-4">
           <div className="flex flex-col items-start pb-4">
             <h1 className="text-[32px] sm:text-[32px] font-semibold tracking-tight mb-4 drop-shadow-md text-white text-left w-[260px] leading-tight">
-              VIP Water Taxi
+              Boat Transfers
             </h1>
 
             <p className="text-white/90 text-[12px] leading-[20px] drop-shadow-sm mb-0 text-left w-[260px] font-medium pr-2">
@@ -124,11 +124,11 @@ export function TaxiSection({ boats, onBook }: Props) {
         {/* Background Image Slide 2 */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/Hedonist_final-19.jpg"
-            alt="Water Taxi"
+            src="/images/Hedonist_final-50.webp"
+            alt="Boat Transfer"
             className="w-full h-full object-cover opacity-60 object-bottom"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10] via-[#0B0C10]/60 to-[#0B0C10]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] from-0% via-[#0B0C10]/50 via-50% to-[#0B0C10] to-100%" />
         </div>
 
         <div className="relative z-10 w-full max-w-md mx-auto">
@@ -137,7 +137,7 @@ export function TaxiSection({ boats, onBook }: Props) {
               On-Demand Transfers
             </h2>
             <p className="text-white/80 text-[13px] leading-relaxed font-medium">
-              Our water taxi services are strictly on demand. Simply choose your
+              Our boat transfer services are strictly on demand. Simply choose your
               destination from the available options and reach out to us on
               WhatsApp anytime to arrange your ride.
             </p>

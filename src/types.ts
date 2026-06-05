@@ -47,6 +47,7 @@ export interface Boat {
   length: string;
   capacity: number;
   imageUrl: string;
+  gallery?: string[];
   description: string;
   specs: { label: string; value: string }[];
   included: string[];

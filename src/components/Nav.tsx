@@ -1,16 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight, Globe } from "lucide-react";
+
+type NavMode = "top" | "hidden" | "glass";
 
 export function Nav() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [navMode, setNavMode] = useState<NavMode>("hidden");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    const scrollContainer = document.getElementById('main-scroll-container');
+    if (!scrollContainer) return;
+
+    let lastScrollY = scrollContainer.scrollTop;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = scrollContainer.scrollTop;
+      const scrollUp = currentScrollY < lastScrollY;
+      const heroHeight = window.innerHeight;
+
+      if (currentScrollY < heroHeight * 0.5) {
+        setNavMode("hidden");
+      } else {
+        if (scrollUp) {
+          setNavMode("glass");
+        } else {
+          setNavMode("hidden");
+        }
+      }
+
+      lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
+    // Check initial position on mount
+    handleScroll();
+    return () => scrollContainer.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollTo = (id: string) => {
@@ -23,31 +47,36 @@ export function Nav() {
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6 px-6 md:px-12 flex justify-between items-center pointer-events-none ${isScrolled ? "bg-[#12100E]/90 backdrop-blur-xl border-b border-white/5 shadow-md" : ""}`}
+      {/* Top Nav (Static/Absolute at Top) */}
+      <nav 
+        className={`fixed top-4 left-0 right-0 z-50 flex justify-center transition-all duration-500 ease-in-out ${
+          navMode === 'glass' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+        }`}
       >
-        <div
-          className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/5 shadow-lg flex items-center justify-center text-white pointer-events-auto cursor-pointer hover:bg-white/20 transition-all p-2"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
-          <img
-            src="/images/logobwnuni.png"
-            alt="Hedonist Logo"
-            className="w-full h-full object-contain"
-          />
+        <div className="w-[92%] md:w-[600px] lg:w-[800px] flex items-center justify-between bg-white/10 hover:bg-white/15 backdrop-blur-xl saturate-[1.2] border border-white/10 rounded-[20px] px-3 py-1.5 shadow-lg transition-colors">
+          <div className="flex items-center gap-3 cursor-pointer pl-2 hover:opacity-80 transition-opacity" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+             <img src="/images/logobwnuni.png" alt="Hedonist Logo" className="h-7 w-auto object-contain drop-shadow-md" />
+          </div>
+          <div className="flex items-center gap-0.5 md:gap-1">
+            <button className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl hover:bg-white/10 text-white transition-colors">
+              <Globe size={18} className="text-white" />
+              <span className="text-xs font-semibold tracking-wide">EN</span>
+            </button>
+            <button 
+              onClick={() => setIsMobileMenuOpen(true)} 
+              className="w-10 h-10 rounded-xl hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <Menu size={22} className="text-white" />
+            </button>
+          </div>
         </div>
-
-        <button
-          onClick={() => setIsMobileMenuOpen(true)}
-          className="px-6 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/5 shadow-lg flex items-center justify-center text-white font-semibold text-sm tracking-wide hover:bg-white/20 transition-all pointer-events-auto"
-        >
-          Menu
-        </button>
       </nav>
 
       {/* Mobile Menu - Creamy */}
       <div
-        className={`fixed inset-0 z-[60] bg-[#F6F3EE] transition-transform duration-500 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed inset-0 z-[60] bg-[#F6F3EE] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <div className="flex justify-between items-center p-6 border-b border-[#1A1817]/10">
           <div className="flex items-center gap-3">
@@ -61,7 +90,7 @@ export function Nav() {
           </div>
           <button
             onClick={() => setIsMobileMenuOpen(false)}
-            className="w-10 h-10 bg-[#1A1817]/5 rounded-full border border-[#1A1817]/10 flex items-center justify-center text-[#1A1817] hover:bg-[#1A1817]/10 transition-colors"
+            className="w-10 h-10 bg-[#1A1817]/5 rounded-xl border border-[#1A1817]/10 flex items-center justify-center text-[#1A1817] hover:bg-[#1A1817]/10 transition-colors"
           >
             <X size={20} className="stroke-[2.5]" />
           </button>
@@ -74,7 +103,7 @@ export function Nav() {
             About
           </button>
           <button
-            onClick={() => scrollTo("experiences")}
+            onClick={() => scrollTo("excursions")}
             className="text-4xl font-semibold tracking-tight text-[#1A1817]/50 hover:text-[#1A1817] transition-colors"
           >
             Excursions
@@ -83,7 +112,7 @@ export function Nav() {
             onClick={() => scrollTo("fleet")}
             className="text-4xl font-semibold tracking-tight text-[#1A1817]/50 hover:text-[#1A1817] transition-colors"
           >
-            Features
+            Fleet
           </button>
           <button
             onClick={() => scrollTo("taxi")}
@@ -93,7 +122,7 @@ export function Nav() {
           </button>
           <button
             onClick={() => scrollTo("booking-engine")}
-            className="mt-8 bg-[#181615] text-[#F6F3EE] rounded-full py-5 text-sm font-bold tracking-wide shadow-xl active:scale-95 transition-transform"
+            className="mt-8 bg-[#181615] text-[#F6F3EE] rounded-2xl py-5 text-sm font-bold tracking-wide shadow-xl active:scale-95 transition-transform"
           >
             Book Now
           </button>

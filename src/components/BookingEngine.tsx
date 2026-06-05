@@ -321,11 +321,11 @@ export function BookingEngine({
     <section className="relative py-20 px-4 sm:px-6 w-full min-h-[100svh] flex flex-col justify-center">
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/Hedonist_final-19.jpg"
+          src="/images/Hedonist_final-19.webp"
           alt="Booking Background"
-          className="w-full h-full object-cover opacity-20 object-center"
+          className="w-full h-full object-cover opacity-60 object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10] via-[#0B0C10]/70 to-[#0B0C10]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] from-0% via-[#0B0C10]/50 via-50% to-[#0B0C10] to-100%" />
       </div>
 
       <div className="relative z-10 w-full max-w-[700px] mx-auto flex flex-col gap-6 lg:gap-8 items-start">
@@ -342,7 +342,7 @@ export function BookingEngine({
         </div>
 
         {/* Left Form */}
-        <div className="w-full bg-[#111111]/90 backdrop-blur-3xl border border-white/5 rounded-[24px] lg:rounded-[32px] shadow-2xl p-4 sm:p-5 lg:p-8 flex flex-col gap-4 lg:gap-5">
+        <div className="w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-[24px] lg:rounded-[32px] shadow-2xl p-4 sm:p-5 lg:p-8 flex flex-col gap-4 lg:gap-5 relative">
           <div className="mb-0">
             <h2 className="text-[10px] uppercase tracking-widest font-bold text-[#D6BB8A] mb-0.5">
               Booking
