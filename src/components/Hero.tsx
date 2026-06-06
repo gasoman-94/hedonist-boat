@@ -17,7 +17,7 @@ export function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hedo_hero_cut_real.png"
+          src="/images/hedo_hero_cut_real.webp"
           alt="Hero Background"
           width={1920}
           height={1080}
