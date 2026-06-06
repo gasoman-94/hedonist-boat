@@ -21,27 +21,23 @@ export function SEO({ title, description, canonicalUrl }: SEOProps) {
   const finalTitle = title ? `${title} | ${siteName}` : defaultTitle;
   const finalDesc = description || defaultDesc;
 
-  // Assume the origin is dynamic based on where it's hosted, but hardcode the domain if known.
-  // Using window.location.origin for frontend fallback
-  const origin = typeof window !== "undefined" ? window.location.origin : "https://example.com";
+  // Use the canonical production domain for all SEO tags
+  const origin = "https://hedonistboat.com";
   const url = canonicalUrl ? `${origin}${canonicalUrl}` : `${origin}/${lang}`;
 
   // JSON-LD structured data for local business / boat rental
   const schema = {
     "@context": "https://schema.org",
-    "@type": "BoatReservation",
+    "@type": "BoatRental",
     name: siteName,
     description: finalDesc,
     url: origin,
-    provider: {
-      "@type": "LocalBusiness",
-      name: "Hedonist Yachting Poreč",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Poreč",
-        addressRegion: "Istria",
-        addressCountry: "HR",
-      },
+    email: "hedonistboat@gmail.com",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Poreč",
+      addressRegion: "Istria",
+      addressCountry: "HR",
     },
   };
 
@@ -58,14 +54,14 @@ export function SEO({ title, description, canonicalUrl }: SEOProps) {
       <meta property="og:url" content={url} />
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDesc} />
-      {/* Assuming a hero image exists in public folder or can be added */}
-      <meta property="og:image" content={`${origin}/og-image.jpg`} />
+      <meta property="og:image" content={`${origin}/images/Hedonist_final-38.webp`} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={url} />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDesc} />
+      <meta name="twitter:image" content={`${origin}/images/Hedonist_final-38.webp`} />
 
       {/* Canonical Link */}
       <link rel="canonical" href={url} />

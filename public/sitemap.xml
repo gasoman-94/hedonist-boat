@@ -3,84 +3,84 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- English (Default) -->
   <url>
-    <loc>https://your-production-domain.com/en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
-    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
-    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <loc>https://hedonistboat.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hedonistboat.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://hedonistboat.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://hedonistboat.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://hedonistboat.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://hedonistboat.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://hedonistboat.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hedonistboat.com/en" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <!-- Croatian -->
   <url>
-    <loc>https://your-production-domain.com/hr</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
-    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
-    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <loc>https://hedonistboat.com/hr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hedonistboat.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://hedonistboat.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://hedonistboat.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://hedonistboat.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://hedonistboat.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://hedonistboat.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hedonistboat.com/en" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- German -->
   <url>
-    <loc>https://your-production-domain.com/de</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
-    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
-    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <loc>https://hedonistboat.com/de</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hedonistboat.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://hedonistboat.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://hedonistboat.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://hedonistboat.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://hedonistboat.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://hedonistboat.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hedonistboat.com/en" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <!-- Italian -->
   <url>
-    <loc>https://your-production-domain.com/it</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
-    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
-    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <loc>https://hedonistboat.com/it</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hedonistboat.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://hedonistboat.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://hedonistboat.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://hedonistboat.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://hedonistboat.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://hedonistboat.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hedonistboat.com/en" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <!-- Dutch -->
   <url>
-    <loc>https://your-production-domain.com/nl</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
-    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
-    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <loc>https://hedonistboat.com/nl</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hedonistboat.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://hedonistboat.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://hedonistboat.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://hedonistboat.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://hedonistboat.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://hedonistboat.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hedonistboat.com/en" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Slovenian -->
   <url>
-    <loc>https://your-production-domain.com/sl</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
-    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
-    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <loc>https://hedonistboat.com/sl</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hedonistboat.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://hedonistboat.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://hedonistboat.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://hedonistboat.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://hedonistboat.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://hedonistboat.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hedonistboat.com/en" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
