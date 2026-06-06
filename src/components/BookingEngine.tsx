@@ -310,13 +310,29 @@ export function BookingEngine({
   };
 
   const handleWhatsApp = () => {
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "whatsapp_click", {
+        event_category: "communication",
+        event_label: "boat_rental_inquiry",
+        value: priceDetails.estimate,
+      });
+    }
+
     const text = encodeURIComponent(constructMessage());
-    window.open(`https://wa.me/385912345678?text=${text}`, "_blank");
+    window.open(`https://wa.me/385995919005?text=${text}`, "_blank");
   };
 
   const handleEmail = () => {
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "email_click", {
+        event_category: "communication",
+        event_label: "boat_rental_inquiry_email",
+        value: priceDetails.estimate,
+      });
+    }
+
     const text = encodeURIComponent(constructMessage());
-    window.location.href = `mailto:booking@porecyachts.com?subject=Booking Inquiry&body=${text}`;
+    window.location.href = `mailto:hedonistboat@gmail.com?subject=Booking Inquiry - ${activeBoat.name}&body=${text}`;
   };
 
   return (

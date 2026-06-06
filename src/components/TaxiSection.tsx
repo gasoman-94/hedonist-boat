@@ -42,6 +42,14 @@ export function TaxiSection({ boats, onBook }: Props) {
   );
 
   const handleWhatsApp = () => {
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "whatsapp_click", {
+        event_category: "communication",
+        event_label: "taxi_boat_inquiry",
+        value: totalPrice,
+      });
+    }
+
     const text = `Hello! I would like to request a Boat Transfer.\n\nPick-up: Poreč Harbour\nDrop-off: ${selectedRoute.description}\nPassengers: ${passengers}\nTotal Price Overview: €${totalPrice}`;
     const encodedText = encodeURIComponent(text);
     window.open(`https://wa.me/385995919005?text=${encodedText}`, "_blank");

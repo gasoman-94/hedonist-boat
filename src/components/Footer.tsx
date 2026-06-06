@@ -51,6 +51,14 @@ export function Footer() {
               href="https://wa.me/385995919005"
               target="_blank"
               rel="noreferrer"
+              onClick={() => {
+                if (typeof window !== "undefined" && (window as any).gtag) {
+                  (window as any).gtag("event", "whatsapp_click", {
+                    event_category: "communication",
+                    event_label: "footer_whatsapp_icon",
+                  });
+                }
+              }}
               className="w-12 h-12 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all hover:scale-105"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -104,6 +112,14 @@ export function Footer() {
             </h4>
             <a
               href="mailto:hedonistboat@gmail.com"
+              onClick={() => {
+                if (typeof window !== "undefined" && (window as any).gtag) {
+                  (window as any).gtag("event", "email_click", {
+                    event_category: "communication",
+                    event_label: "footer_email_link",
+                  });
+                }
+              }}
               className="text-sm text-white/60 hover:text-white transition-colors"
             >
               Email
@@ -113,6 +129,14 @@ export function Footer() {
             </span>
             <a
               href="tel:+385995919005"
+              onClick={() => {
+                if (typeof window !== "undefined" && (window as any).gtag) {
+                  (window as any).gtag("event", "phone_click", {
+                    event_category: "communication",
+                    event_label: "footer_phone_link",
+                  });
+                }
+              }}
               className="text-sm text-white/60 hover:text-white transition-colors"
             >
               +385 99 591 9005
