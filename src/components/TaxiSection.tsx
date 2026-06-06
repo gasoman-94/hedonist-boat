@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Boat } from "../types";
+import { useTranslation } from "react-i18next";
 import { MapPin, MessageCircle, ChevronDown, ArrowDown } from "lucide-react";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export function TaxiSection({ boats, onBook }: Props) {
+  const { t } = useTranslation();
   const taxiBoat = boats.find((b) => b.services.some((s) => s.type === "taxi"));
   const taxiService = taxiBoat?.services.find((s) => s.type === "taxi");
 
@@ -56,6 +58,9 @@ export function TaxiSection({ boats, onBook }: Props) {
           <img
             src="/images/Hedonist_final-19.webp"
             alt="Boat Transfer"
+            width={1920}
+            height={1080}
+            loading="lazy"
             className="w-full h-full object-cover opacity-100"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] via-transparent via-60% to-[#0B0C10] to-100%" />
@@ -64,14 +69,12 @@ export function TaxiSection({ boats, onBook }: Props) {
         {/* Bottom Content Area */}
         <div className="absolute bottom-6 sm:bottom-10 left-0 right-0 w-full px-6 sm:px-12 z-10 flex items-end justify-between max-w-7xl mx-auto gap-4">
           <div className="flex flex-col items-start pb-4">
-            <h1 className="text-[32px] sm:text-[32px] font-semibold tracking-tight mb-4 drop-shadow-md text-white text-left w-[260px] leading-tight">
-              Boat Transfers
-            </h1>
+            <h2 className="text-[32px] sm:text-[32px] font-semibold tracking-tight mb-4 drop-shadow-md text-white text-left w-[260px] leading-tight">
+              {t("taxi.title")}
+            </h2>
 
             <p className="text-white/90 text-[12px] leading-[20px] drop-shadow-sm mb-0 text-left w-[260px] font-medium pr-2">
-              Skip the traffic and travel the coast in absolute comfort. Fast,
-              secure, and stylish transfers between all major coastal
-              destinations around Poreč.
+              {t("taxi.desc")}
             </p>
           </div>
 
@@ -107,7 +110,7 @@ export function TaxiSection({ boats, onBook }: Props) {
                   transform: "rotate(180deg)",
                 }}
               >
-                BUILD RIDE
+                {t("taxi.build_ride", "BUILD RIDE")}
               </div>
               <div className="w-8 h-8 rounded-full bg-gradient-to-b from-[#C5A059] to-[#8B6B25] shadow-inner flex flex-shrink-0 items-center justify-center">
                 <ArrowDown size={16} strokeWidth={2.5} className="text-white" />
@@ -126,6 +129,9 @@ export function TaxiSection({ boats, onBook }: Props) {
           <img
             src="/images/Hedonist_final-50.webp"
             alt="Boat Transfer"
+            width={1920}
+            height={1080}
+            loading="lazy"
             className="w-full h-full object-cover opacity-60 object-bottom"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] from-0% via-[#0B0C10]/50 via-50% to-[#0B0C10] to-100%" />
@@ -134,12 +140,10 @@ export function TaxiSection({ boats, onBook }: Props) {
         <div className="relative z-10 w-full max-w-md mx-auto">
           <div className="mb-8 text-left pl-2 pr-4">
             <h2 className="text-[24px] font-semibold tracking-tight text-white mb-3">
-              On-Demand Transfers
+              {t("taxi.on_demand", "On-Demand Transfers")}
             </h2>
             <p className="text-white/80 text-[13px] leading-relaxed font-medium">
-              Our boat transfer services are strictly on demand. Simply choose your
-              destination from the available options and reach out to us on
-              WhatsApp anytime to arrange your ride.
+              {t("taxi.on_demand_desc", "Our boat transfer services are strictly on demand. Simply choose your destination from the available options and reach out to us on WhatsApp anytime to arrange your ride.")}
             </p>
           </div>
 
@@ -148,12 +152,15 @@ export function TaxiSection({ boats, onBook }: Props) {
               <img
                 src={taxiBoat.imageUrl}
                 alt={taxiBoat.name}
+                width={80}
+                height={80}
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="text-left">
               <p className="text-[9px] uppercase font-bold tracking-widest text-[#D6BB8A] mb-0.5">
-                Operated by
+                {t("taxi.operated_by", "Operated by")}
               </p>
               <p className="font-semibold text-[13px] tracking-tight text-white">
                 {taxiBoat.name}
@@ -169,7 +176,7 @@ export function TaxiSection({ boats, onBook }: Props) {
               </div>
               <div>
                 <p className="text-[9px] font-bold tracking-widest text-white/50 uppercase mb-0.5">
-                  Pick-up
+                  {t("taxi.pickup")}
                 </p>
                 <p className="text-[14px] font-bold text-white tracking-tight">
                   Poreč Harbour
@@ -189,7 +196,7 @@ export function TaxiSection({ boats, onBook }: Props) {
               </div>
               <div className="flex-1 relative">
                 <p className="text-[9px] font-bold tracking-widest text-[#D6BB8A] uppercase mb-0.5">
-                  Drop-off
+                  {t("taxi.dropoff")}
                 </p>
 
                 {/* Custom Dropdown Trigger */}
@@ -231,7 +238,7 @@ export function TaxiSection({ boats, onBook }: Props) {
               <div className="flex justify-between items-center w-full px-2">
                 <div>
                   <p className="text-[11px] font-medium text-white/50 mb-2">
-                    Passengers
+                    {t("taxi.passengers", "Passengers")}
                   </p>
                   <div className="flex items-center gap-3 bg-white/5 rounded-full p-1.5 border border-white/10 w-fit">
                     <button
@@ -258,7 +265,7 @@ export function TaxiSection({ boats, onBook }: Props) {
 
                 <div className="text-right">
                   <p className="text-[11px] font-medium text-white/50 mb-1">
-                    Total
+                    {t("taxi.total", "Total")}
                   </p>
                   <div className="flex items-baseline justify-end gap-1.5">
                     <span className="font-bold text-[36px] sm:text-[42px] tracking-tight text-white leading-none">
@@ -270,14 +277,14 @@ export function TaxiSection({ boats, onBook }: Props) {
 
               <div className="w-full flex flex-col items-center mt-3">
                 <p className="text-[10px] font-medium text-white/50 mb-4 text-center">
-                  €{selectedRoute.amount} per person • Min. €
+                  €{selectedRoute.amount} {t("taxi.per_person", "per person")} • {t("taxi.min", "Min.")} €
                   {selectedRoute.minPrice}
                 </p>
                 <button
                   onClick={handleWhatsApp}
                   className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3 rounded-full text-[10px] font-bold tracking-widest uppercase transition-colors flex items-center justify-center gap-2 shadow-lg"
                 >
-                  Request a ride via WhatsApp <MessageCircle size={14} />
+                  {t("taxi.request_whatsapp", "Request a ride via WhatsApp")} <MessageCircle size={14} />
                 </button>
               </div>
             </div>

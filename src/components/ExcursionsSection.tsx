@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Boat, Service } from "../types";
+import { useTranslation } from "react-i18next";
 import {
   Plus,
   X,
@@ -12,7 +13,7 @@ import {
   MapPin,
   Anchor,
   Compass,
-  ChevronDown
+  ChevronDown,
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -23,6 +24,7 @@ interface Props {
 }
 
 export function ExcursionsSection({ excursions, boats, onBook }: Props) {
+  const { t } = useTranslation();
   const [selectedExcursion, setSelectedExcursion] = useState<Service | null>(
     null,
   );
@@ -48,7 +50,7 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
   };
 
   const filters = [
-    { id: "all", label: "All Trips" },
+    { id: "all", label: t("excursions.all_trips", "All Trips") },
     ...boats.map((b) => ({ id: b.id, label: b.name })),
   ];
 
@@ -67,6 +69,9 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
           <img
             src="/images/Hedonist_final-47.webp"
             alt="Excursions background"
+            width={1920}
+            height={1080}
+            loading="lazy"
             className="w-full h-full object-cover object-center opacity-40 scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] from-10% via-transparent via-50% to-[#0B0C10] to-90%" />
@@ -76,31 +81,41 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
         <div className="relative w-full px-6 sm:px-12 z-10 flex flex-col items-start justify-start max-w-7xl mx-auto">
           <div className="flex flex-col items-start pb-4 w-full max-w-[500px]">
             <span className="text-[#D6BB8A] font-bold tracking-[0.2em] uppercase text-[10px] sm:text-xs mb-2 sm:mb-4 block drop-shadow-md">
-              Curated Marine Experiences
+              {t("excursions.subtitle", "Curated Marine Experiences")}
             </span>
             <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] font-semibold tracking-tight mb-2 sm:mb-4 drop-shadow-md text-white text-left leading-[1.1]">
-              Unforgettable Journeys
+              {t("nav.excursions")}
             </h2>
             <p className="text-white/90 text-[14px] leading-[22px] drop-shadow-sm mb-0 text-left font-medium pr-2">
-              Let us take the helm while you simply sit back and enjoy. From
-              intimate sunset cruises to exhilarating island-hopping adventures,
-              our bespoke, predefined tours with seasoned skippers are tailored
-              for those who want to discover the Adriatic in pure relaxation.
+              {t(
+                "excursions.description",
+                "Let us take the helm while you simply sit back and enjoy. From intimate sunset cruises to exhilarating island-hopping adventures, our bespoke, predefined tours with seasoned skippers are tailored for those who want to discover the Adriatic in pure relaxation.",
+              )}
             </p>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div 
-          onClick={() => document.getElementById("experiences-grid")?.scrollIntoView({ behavior: "smooth" })}
+        <div
+          onClick={() =>
+            document
+              .getElementById("experiences-grid")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 cursor-pointer z-20 group"
         >
-          <span className="text-[10px] sm:text-xs text-[#D6BB8A] uppercase tracking-[0.2em] font-bold group-hover:text-white transition-colors duration-300 drop-shadow-md">Explore Experiences</span>
+          <span className="text-[10px] sm:text-xs text-[#D6BB8A] uppercase tracking-[0.2em] font-bold group-hover:text-white transition-colors duration-300 drop-shadow-md">
+            {t("excursions.explore")}
+          </span>
           <div className="w-[1px] h-16 sm:h-24 bg-white/20 relative overflow-hidden group-hover:bg-white/30 transition-colors">
             <motion.div
               className="w-full h-1/2 bg-[#D6BB8A] absolute top-0"
               animate={{ y: ["-100%", "200%"] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              transition={{
+                repeat: Infinity,
+                duration: 1.5,
+                ease: "easeInOut",
+              }}
             />
           </div>
         </div>
@@ -115,7 +130,7 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
           <div className="w-full flex justify-center mb-6 relative z-10 pointer-events-none">
             <div className="flex items-center gap-2 text-white/40 bg-black/20 backdrop-blur-md border border-white/5 rounded-full px-4 py-1.5">
               <span className="uppercase tracking-[0.15em] text-[10px] font-bold">
-                Filter trips by boat
+                {t("excursions.filter_trips", "Filter trips by boat")}
               </span>
             </div>
           </div>
@@ -211,6 +226,9 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                     <img
                       src={getImageUrl(excursion.id, originalIndex)}
                       alt={excursion.title}
+                      width={600}
+                      height={800}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                     {/* Subtle vignette on top */}
@@ -226,7 +244,7 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                         {/* Title & Price Row */}
                         <div className="flex justify-between items-start mb-2 gap-3">
                           <h3 className="text-lg sm:text-[20px] font-bold text-white tracking-tight leading-[1.2]">
-                            {excursion.title}
+                            {t(`trips.${excursion.id}.title`, excursion.title)}
                           </h3>
                           <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-full px-3 h-[24px] flex items-center justify-center flex-shrink-0 mt-0.5">
                             <span className="text-[#D6BB8A] text-[11px] font-medium tracking-wide leading-none translate-y-[0.5px]">
@@ -237,7 +255,10 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
 
                         {/* Description */}
                         <p className="text-white/80 text-[12px] leading-[1.4] line-clamp-2 mb-3 pr-2 font-medium">
-                          {excursion.description ||
+                          {t(
+                            `trips.${excursion.id}.description`,
+                            excursion.description,
+                          ) ||
                             "Experience the beauty of the coast with this carefully curated excursion."}
                         </p>
 
@@ -257,13 +278,13 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                       {/* Action Buttons */}
                       <div className="flex gap-2 w-full mt-auto">
                         <button
-                          className="flex-1 bg-white hover:bg-gray-100 text-[#1A1A1A] text-[13px] font-bold rounded-[14px] py-2 transition-colors shadow-md"
+                          className="flex-1 bg-white hover:bg-gray-100 text-[#1A1A1A] text-[13px] font-bold uppercase rounded-[14px] py-2 transition-colors shadow-md"
                           onClick={(e) => {
                             e.stopPropagation();
                             onBook(excursion.boatId, excursion.id);
                           }}
                         >
-                          Book now
+                          {t("nav.book_now")}
                         </button>
                         <button
                           className="flex-[0.6] min-w-max px-3 bg-white/10 hover:bg-white/20 text-white text-[13px] font-bold rounded-[14px] py-2 transition-colors border border-white/20 backdrop-blur-md"
@@ -273,7 +294,7 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                             setSelectedPackageIndex(0);
                           }}
                         >
-                          Read more
+                          {t("fleet.read_more", "Read more")}
                         </button>
                       </div>
                     </div>
@@ -307,11 +328,12 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
               <div className="absolute top-0 inset-x-0 flex justify-between items-center p-6 pt-12 sm:pt-6 z-20 pointer-events-none">
                 <button
                   onClick={() => setSelectedExcursion(null)}
+                  aria-label="Close excursion details"
                   className="w-10 h-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-transform active:scale-95 pointer-events-auto shadow-md"
                 >
                   <ChevronLeft size={20} strokeWidth={2.5} className="mr-0.5" />
                 </button>
-                <button className="w-10 h-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-transform active:scale-95 pointer-events-auto shadow-md">
+                <button aria-label="More options" className="w-10 h-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-transform active:scale-95 pointer-events-auto shadow-md pointer-events-none">
                   <MoreHorizontal size={20} strokeWidth={2.5} />
                 </button>
               </div>
@@ -324,6 +346,9 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                       excursions.indexOf(selectedExcursion),
                     )}
                     alt={selectedExcursion.title}
+                    width={800}
+                    height={800}
+                    loading="lazy"
                     className="w-full h-full object-cover object-top"
                   />
                   <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black/50 via-black/20 to-transparent pointer-events-none" />
@@ -351,7 +376,10 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
 
                   {/* Title */}
                   <h2 className="text-[28px] sm:text-[32px] font-bold text-white tracking-tight mb-3 leading-[1.1]">
-                    {selectedExcursion.title}
+                    {t(
+                      `trips.${selectedExcursion.id}.title`,
+                      selectedExcursion.title,
+                    )}
                   </h2>
 
                   {/* Location & Rating */}
@@ -376,11 +404,16 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                       selectedExcursion.highlights.length > 0 && (
                         <div>
                           <h3 className="text-white text-[16px] font-bold mb-2">
-                            Highlights
+                            {t("fleet.highlights", "Highlights")}
                           </h3>
                           <ul className="list-disc pl-5 space-y-1">
                             {selectedExcursion.highlights.map((h, index) => (
-                              <li key={index}>{h}</li>
+                              <li key={index}>
+                                {t(
+                                  `trips.${selectedExcursion.id}.highlights.${index}`,
+                                  h,
+                                )}
+                              </li>
                             ))}
                           </ul>
                         </div>
@@ -389,17 +422,23 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                     {selectedExcursion.fullDescription && (
                       <div>
                         <h3 className="text-white text-[16px] font-bold mb-2">
-                          Full description
+                          {t("fleet.full_description", "Full description")}
                         </h3>
                         <div className="space-y-2 whitespace-pre-wrap">
-                          {selectedExcursion.fullDescription}
+                          {t(
+                            `trips.${selectedExcursion.id}.fullDescription`,
+                            selectedExcursion.fullDescription,
+                          )}
                         </div>
                       </div>
                     )}
 
                     {!selectedExcursion.fullDescription && (
                       <p className="leading-[1.6]">
-                        {selectedExcursion.description}
+                        {t(
+                          `trips.${selectedExcursion.id}.description`,
+                          selectedExcursion.description,
+                        )}
                       </p>
                     )}
 
@@ -412,6 +451,7 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
 
                           <div className="flex items-center gap-4 mb-6">
                             <button
+                              aria-label="Previous duration package"
                               onClick={() =>
                                 setSelectedPackageIndex(
                                   Math.max(0, selectedPackageIndex - 1),
@@ -446,6 +486,7 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                               </div>
                             </div>
                             <button
+                              aria-label="Next duration package"
                               onClick={() =>
                                 setSelectedPackageIndex(
                                   Math.min(
@@ -483,10 +524,13 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                                 </div>
                                 <div>
                                   <div className="text-white/60 text-[11px] font-semibold uppercase tracking-wider mb-1">
-                                    Locations
+                                    {t("intro.welcome.locations", "Locations")}
                                   </div>
                                   <div className="text-white/90 text-[14px] leading-relaxed">
-                                    {pkg.locations}
+                                    {t(
+                                      `trips.${selectedExcursion.id}.packages.${selectedPackageIndex}.locations`,
+                                      pkg.locations,
+                                    )}
                                   </div>
                                 </div>
                                 <div>
@@ -504,7 +548,12 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                                           strokeWidth={2.5}
                                           className="text-[#D6BB8A] mt-[2px] shrink-0"
                                         />
-                                        <span>{inc}</span>
+                                        <span>
+                                          {t(
+                                            `trips.${selectedExcursion.id}.packages.${selectedPackageIndex}.inclusions.${i}`,
+                                            inc,
+                                          )}
+                                        </span>
                                       </li>
                                     ))}
                                   </ul>
@@ -548,7 +597,7 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                       selectedExcursion.includes.length > 0 && (
                         <div>
                           <h3 className="text-white text-[16px] font-bold mb-3">
-                            Includes
+                            {t("fleet.includes", "Includes")}
                           </h3>
                           <ul className="space-y-2">
                             {selectedExcursion.includes.map((h, index) => (
@@ -561,7 +610,10 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                                   className="text-[#D6BB8A] mt-0.5 shrink-0"
                                 />
                                 <span className="leading-tight pt-0.5">
-                                  {h}
+                                  {t(
+                                    `trips.${selectedExcursion.id}.includes.${index}`,
+                                    h,
+                                  )}
                                 </span>
                               </li>
                             ))}
@@ -590,11 +642,16 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                       selectedExcursion.whatToBring.length > 0 && (
                         <div>
                           <h3 className="text-white text-[16px] font-bold mb-2">
-                            What to bring
+                            {t("fleet.what_to_bring", "What to bring")}
                           </h3>
                           <ul className="list-disc pl-5 space-y-1">
                             {selectedExcursion.whatToBring.map((h, index) => (
-                              <li key={index}>{h}</li>
+                              <li key={index}>
+                                {t(
+                                  `trips.${selectedExcursion.id}.whatToBring.${index}`,
+                                  h,
+                                )}
+                              </li>
                             ))}
                           </ul>
                         </div>
@@ -604,7 +661,10 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                       selectedExcursion.knowBeforeYouGo.length > 0 && (
                         <div>
                           <h3 className="text-white text-[16px] font-bold mb-3">
-                            Know before you go
+                            {t(
+                              "fleet.know_before_you_go",
+                              "Know before you go",
+                            )}
                           </h3>
                           <ul className="space-y-3">
                             {selectedExcursion.knowBeforeYouGo.map(
@@ -618,7 +678,10 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                                     className="text-white/60 mt-0.5 shrink-0"
                                   />
                                   <span className="leading-tight pt-0.5">
-                                    {h}
+                                    {t(
+                                      `trips.${selectedExcursion.id}.knowBeforeYouGo.${index}`,
+                                      h,
+                                    )}
                                   </span>
                                 </li>
                               ),
@@ -630,13 +693,13 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
 
                   {/* Book Action */}
                   <button
-                    className="w-full bg-white hover:bg-gray-100 text-[#1A1A1A] font-bold text-[15px] py-[18px] rounded-full shadow-lg active:scale-95 transition-transform"
+                    className="w-full bg-white hover:bg-gray-100 text-[#1A1A1A] font-bold text-[15px] uppercase py-[18px] rounded-full shadow-lg active:scale-95 transition-transform"
                     onClick={() => {
                       onBook(selectedExcursion.boatId, selectedExcursion.id);
                       setSelectedExcursion(null);
                     }}
                   >
-                    Book Experience
+                    {t("nav.book_now", "BOOK NOW")}
                   </button>
                 </div>
               </div>

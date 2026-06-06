@@ -1,7 +1,10 @@
 import React from "react";
 import { ChevronUp, ArrowUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function Hero() {
+  const { t } = useTranslation();
+
   const handleScroll = () => {
     const introSection = document.getElementById("intro");
     if (introSection) {
@@ -16,6 +19,8 @@ export function Hero() {
         <img
           src="/images/hedo_hero_cut_real.png"
           alt="Hero Background"
+          width={1920}
+          height={1080}
           className="w-full h-full object-cover object-center"
         />
         {/* Soft gradient overlay for text readability and smooth section transition */}
@@ -27,7 +32,9 @@ export function Hero() {
         <img
           src="/images/logobwnuni.png"
           alt="Hedonist Yachting"
-          className="h-32 sm:h-40 object-contain drop-shadow-xl"
+          width={400}
+          height={200}
+          className="h-32 sm:h-40 w-auto object-contain drop-shadow-xl"
         />
       </div>
 
@@ -35,13 +42,11 @@ export function Hero() {
       <div className="absolute bottom-6 sm:bottom-10 left-0 right-0 w-full px-6 sm:px-12 z-10 flex items-end justify-between max-w-7xl mx-auto gap-4">
         <div className="flex flex-col items-start pb-4">
           <h1 className="text-[36px] sm:text-[44px] font-semibold tracking-tight mb-4 drop-shadow-md text-white text-left w-[300px] sm:w-[380px] leading-[1.1]">
-            Elevate Your Journey
+            {t("hero.title")}
           </h1>
 
           <p className="text-white/90 text-[14px] sm:text-[16px] leading-[22px] sm:leading-[26px] drop-shadow-sm mb-0 text-left w-[300px] sm:w-[380px] font-medium pr-2">
-            Exclusive fleet. Unforgettable excursions. Discover the raw beauty
-            of the Istrian coast with absolute luxury and a bespoke approach to
-            maritime exploration.
+            {t("hero.subtitle")}
           </p>
         </div>
 
@@ -73,7 +78,7 @@ export function Hero() {
                 transform: "rotate(180deg)",
               }}
             >
-              START NOW
+              {t("hero.start_now")}
             </div>
             <div className="w-8 h-8 rounded-full bg-gradient-to-b from-[#C5A059] to-[#8B6B25] shadow-inner flex flex-shrink-0 items-center justify-center">
               <ArrowUp size={16} strokeWidth={2.5} className="text-white" />

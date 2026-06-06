@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Boat, Service } from "../types";
+import { useTranslation } from "react-i18next";
 import {
   Star,
   Anchor,
@@ -26,10 +27,13 @@ interface Props {
 }
 
 export function FleetSection({ boats, onBook }: Props) {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedBoat, setSelectedBoat] = useState<Boat | null>(null);
   const [showAllAmenities, setShowAllAmenities] = useState<boolean>(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
+    null,
+  );
 
   const handleDragEnd = (_e: any, info: PanInfo) => {
     const threshold = 50;
@@ -63,13 +67,10 @@ export function FleetSection({ boats, onBook }: Props) {
         <div className="mb-8 px-2 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
           <div>
             <h2 className="text-4xl md:text-5xl font-semibold text-white mb-3 tracking-tight">
-              Our Fleet
+              {t("nav.fleet")}
             </h2>
             <p className="text-white/70 text-sm md:text-base max-w-lg leading-[22px]">
-              Discover our exquisite collection of premium vessels. Whether you
-              prefer to rent a boat with or without a skipper, for a half-day
-              adventure or a full-day experience, check out our fleet below and
-              find the perfect match for your pristine Adriatic waters getaway.
+              {t("hero.subtitle")}
             </p>
           </div>
         </div>
@@ -114,6 +115,9 @@ export function FleetSection({ boats, onBook }: Props) {
                 <img
                   src={boat.imageUrl}
                   alt={boat.name}
+                  loading="lazy"
+                  width={800}
+                  height={600}
                   className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                 />
 
@@ -124,7 +128,7 @@ export function FleetSection({ boats, onBook }: Props) {
                 <div className="absolute top-6 left-6 right-6 flex justify-between items-start pointer-events-none gap-2">
                   <div className="flex flex-wrap gap-2">
                     <span className="px-3 py-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20 text-white text-xs font-semibold shadow-xl whitespace-nowrap">
-                      Up to {boat.capacity} guests
+                      {t("fleet.capacity", { count: boat.capacity })}
                     </span>
                   </div>
                 </div>
@@ -148,13 +152,13 @@ export function FleetSection({ boats, onBook }: Props) {
                       }}
                       className="flex-1 bg-white/10 backdrop-blur-md border border-white/20 text-white py-3 rounded-full text-xs font-semibold tracking-wide transition-colors hover:bg-white/20 shadow-xl"
                     >
-                      READ MORE
+                      {t("fleet.read_more", "READ MORE").toUpperCase()}
                     </button>
                     <button
                       onClick={() => onBook(boat.id, boat.services[0]?.id)}
                       className="flex-1 bg-white text-[#181615] py-3 rounded-full text-xs font-bold tracking-wide shadow-xl hover:bg-gray-100 transition-colors"
                     >
-                      BOOK NOW
+                      {t("nav.book_now").toUpperCase()}
                     </button>
                   </div>
                 </div>
@@ -194,6 +198,9 @@ export function FleetSection({ boats, onBook }: Props) {
                   <img
                     src={selectedBoat.imageUrl}
                     alt={selectedBoat.name}
+                    width={1000}
+                    height={800}
+                    loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover rounded-b-[40px] md:rounded-b-[48px]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 rounded-b-[40px] md:rounded-b-[48px]" />
@@ -201,12 +208,13 @@ export function FleetSection({ boats, onBook }: Props) {
                   <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-20">
                     <button
                       onClick={() => setSelectedBoat(null)}
+                      aria-label="Close boat details"
                       className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-white/30 transition-colors"
                     >
                       <ArrowLeft className="w-5 h-5" />
                     </button>
                     <span className="font-medium text-lg drop-shadow-md tracking-wide text-white">
-                      Overview
+                      {t("fleet.overview", "Overview")}
                     </span>
                     <div className="w-12 h-12" />{" "}
                     {/* Empty div to maintain centered title */}
@@ -219,18 +227,17 @@ export function FleetSection({ boats, onBook }: Props) {
                   </h3>
 
                   <p className="text-white/70 font-medium text-[14px] leading-[20px] mb-8">
-                    {selectedBoat.description}
+                    {t(
+                      `fleet.boats.${selectedBoat.id}.description`,
+                      selectedBoat.description,
+                    )}
                   </p>
 
                   <div className="mb-8">
                     <div className="flex justify-between items-center mb-5">
                       <h4 className="text-lg font-medium text-white flex gap-2">
-                        All{" "}
-                        <span className="text-[#D6BB8A]">Specifications</span>
+                        {t("fleet.specs_title", "Specifications")}
                       </h4>
-                      <span className="text-sm text-white/50 hover:text-white cursor-pointer transition-colors">
-                        View all
-                      </span>
                     </div>
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
@@ -242,10 +249,11 @@ export function FleetSection({ boats, onBook }: Props) {
                           />
                         </div>
                         <span className="text-white/40 font-medium text-[11px] md:text-xs uppercase tracking-widest leading-none mb-1">
-                          Capacity
+                          {t("fleet.specs.Capacity", "Capacity")}
                         </span>
                         <span className="text-white/90 font-semibold text-sm md:text-base leading-none">
-                          {selectedBoat.capacity} Guests
+                          {selectedBoat.capacity}{" "}
+                          {t("fleet.guests_word", "Guests")}
                         </span>
                       </div>
                       {selectedBoat.specs.map((spec, i) => {
@@ -281,7 +289,7 @@ export function FleetSection({ boats, onBook }: Props) {
                               />
                             </div>
                             <span className="text-white/40 font-medium text-[11px] md:text-xs uppercase tracking-widest leading-none mb-1">
-                              {spec.label}
+                              {t(`fleet.specs.${spec.label}`, spec.label)}
                             </span>
                             <span className="text-white/90 font-semibold text-sm md:text-base leading-none">
                               {spec.value}
@@ -296,8 +304,16 @@ export function FleetSection({ boats, onBook }: Props) {
                     selectedBoat.included.length > 0 && (
                       <div className="mb-8">
                         <h4 className="text-lg font-medium text-white flex gap-2 mb-4">
-                          Premium{" "}
-                          <span className="text-[#D6BB8A]">Amenities</span>
+                          {t(
+                            "fleet.premium_amenities",
+                            "Premium Amenities",
+                          ).split(" ")[0] || "Premium"}{" "}
+                          <span className="text-[#D6BB8A]">
+                            {t("fleet.premium_amenities", "Premium Amenities")
+                              .split(" ")
+                              .slice(1)
+                              .join(" ") || "Amenities"}
+                          </span>
                         </h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {(showAllAmenities
@@ -309,7 +325,7 @@ export function FleetSection({ boats, onBook }: Props) {
                                 <Check className="w-3.5 h-3.5 text-[#D6BB8A]" />
                               </div>
                               <span className="text-white/80 text-sm">
-                                {item}
+                                {t(`fleet.amenities.${item}`, item)}
                               </span>
                             </div>
                           ))}
@@ -323,8 +339,14 @@ export function FleetSection({ boats, onBook }: Props) {
                               className="text-[#D6BB8A] text-sm font-semibold hover:text-[#E5CDA3] transition-colors"
                             >
                               {showAllAmenities
-                                ? "Show fewer amenities"
-                                : "Read all amenities"}
+                                ? t(
+                                    "fleet.show_fewer_amenities",
+                                    "Show fewer amenities",
+                                  )
+                                : t(
+                                    "fleet.read_all_amenities",
+                                    "Read all amenities",
+                                  )}
                             </button>
                           </div>
                         )}
@@ -334,7 +356,15 @@ export function FleetSection({ boats, onBook }: Props) {
                   {selectedBoat.gallery && selectedBoat.gallery.length > 0 && (
                     <div className="mb-8">
                       <h4 className="text-lg font-medium text-white flex gap-2 mb-4">
-                        Image <span className="text-[#D6BB8A]">Gallery</span>
+                        {t("fleet.image_gallery", "Image Gallery").split(
+                          " ",
+                        )[0] || "Image"}{" "}
+                        <span className="text-[#D6BB8A]">
+                          {t("fleet.image_gallery", "Image Gallery")
+                            .split(" ")
+                            .slice(1)
+                            .join(" ") || "Gallery"}
+                        </span>
                       </h4>
                       <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-6 px-6 snap-x snap-mandatory">
                         {selectedBoat.gallery.map((imgUrl, idx) => (
@@ -345,6 +375,10 @@ export function FleetSection({ boats, onBook }: Props) {
                           >
                             <img
                               src={imgUrl}
+                              alt={`${selectedBoat.name} gallery image ${idx + 1}`}
+                              loading="lazy"
+                              width={400}
+                              height={300}
                               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                             />
                           </div>
@@ -356,7 +390,7 @@ export function FleetSection({ boats, onBook }: Props) {
                   {selectedBoat.pricingDetails && (
                     <div className="mb-24">
                       <h4 className="text-[28px] font-semibold tracking-tight text-white mb-6">
-                        Rates & Fees
+                        {t("fleet.rates_fees", "Rates & Fees")}
                       </h4>
 
                       <div className="w-full border border-white/10 rounded-[24px] overflow-hidden bg-[#1A1A1A] shadow-xl">
@@ -366,20 +400,20 @@ export function FleetSection({ boats, onBook }: Props) {
                             {/* Hourly Pricing Implementation */}
                             <div className="grid grid-cols-2 bg-white/5 px-4 sm:px-6 py-4 border-b border-white/5">
                               <div className="text-white/40 text-[11px] font-bold uppercase tracking-widest">
-                                Service
+                                {t("fleet.service", "Service")}
                               </div>
                               <div className="text-white/40 text-[11px] font-bold uppercase tracking-widest text-right">
-                                Rate
+                                {t("fleet.rate", "Rate")}
                               </div>
                             </div>
                             {/* Boat Rental */}
                             <div className="grid grid-cols-2 px-4 sm:px-6 py-5 border-b border-white/5 items-center group hover:bg-white/[0.02] transition-colors">
                               <div>
                                 <span className="block text-white font-medium text-sm md:text-base">
-                                  Hourly Charter
+                                  {t("fleet.hourly_charter", "Hourly Charter")}
                                 </span>
                                 <span className="block text-white/50 text-[11px] sm:text-xs mt-1">
-                                  Base rate per hour
+                                  {t("fleet.base_rate_per_hour", "Base rate per hour")}
                                 </span>
                               </div>
                               <div className="text-right text-white font-semibold text-sm leading-5">
@@ -392,19 +426,25 @@ export function FleetSection({ boats, onBook }: Props) {
                               <div>
                                 <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                                   <span className="block text-white font-medium text-sm md:text-base">
-                                    Skipper
+                                    {t("fleet.skipper", "Skipper")}
                                   </span>
                                   <span className="inline-flex w-fit px-2 py-0.5 rounded-full bg-[#D6BB8A]/20 text-[#D6BB8A] text-[9px] sm:text-[10px] font-bold tracking-wide uppercase">
-                                    Included
+                                    {t("fleet.included", "Included")}
                                   </span>
                                 </div>
                                 <span className="block text-white/50 text-[11px] sm:text-xs mt-1">
-                                  Professional captain
+                                  {t(
+                                    "fleet.professional_captain",
+                                    "Professional captain",
+                                  )}
                                 </span>
                               </div>
                               <div className="text-right">
                                 <span className="text-white/80 font-medium text-sm leading-5">
-                                  Included in price
+                                  {t(
+                                    "fleet.included_in_price",
+                                    "Included in price",
+                                  )}
                                 </span>
                               </div>
                             </div>
@@ -415,19 +455,28 @@ export function FleetSection({ boats, onBook }: Props) {
                                 <div>
                                   <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                                     <span className="block text-white font-medium text-sm md:text-base">
-                                      Sailor / Tour Guide
+                                      {t(
+                                        "fleet.sailor_guide",
+                                        "Sailor / Tour Guide",
+                                      )}
                                     </span>
                                     <span className="inline-flex w-fit px-2 py-0.5 rounded-full bg-[#D6BB8A]/20 text-[#D6BB8A] text-[9px] sm:text-[10px] font-bold tracking-wide uppercase">
-                                      Included
+                                      {t("fleet.included", "Included")}
                                     </span>
                                   </div>
                                   <span className="block text-white/50 text-[11px] sm:text-xs mt-1">
-                                    Experienced sailor & guide
+                                    {t(
+                                      "fleet.experienced_sailor",
+                                      "Experienced sailor & guide",
+                                    )}
                                   </span>
                                 </div>
                                 <div className="text-right">
                                   <span className="text-white/80 font-medium text-sm leading-5">
-                                    Included in price
+                                    {t(
+                                      "fleet.included_in_price",
+                                      "Included in price",
+                                    )}
                                   </span>
                                 </div>
                               </div>
@@ -464,10 +513,10 @@ export function FleetSection({ boats, onBook }: Props) {
                                 Service
                               </div>
                               <div className="text-white/40 text-[11px] font-bold uppercase tracking-widest text-right">
-                                Half Day
+                                {t("fleet.half_day", "Half Day")}
                               </div>
                               <div className="text-white/40 text-[11px] font-bold uppercase tracking-widest text-right">
-                                Full Day
+                                {t("fleet.full_day", "Full Day")}
                               </div>
                             </div>
 
@@ -475,10 +524,10 @@ export function FleetSection({ boats, onBook }: Props) {
                             <div className="grid grid-cols-3 px-4 sm:px-6 py-5 border-b border-white/5 items-center group hover:bg-white/[0.02] transition-colors">
                               <div>
                                 <span className="block text-white font-medium text-sm md:text-base">
-                                  Boat Rental
+                                  {t("fleet.boat_rental", "Boat Rental")}
                                 </span>
                                 <span className="block text-white/50 text-[11px] sm:text-xs mt-1">
-                                  Base rate
+                                  {t("fleet.base_rate", "Base rate")}
                                 </span>
                               </div>
                               <div className="text-right text-white font-semibold text-sm leading-5">
@@ -494,27 +543,33 @@ export function FleetSection({ boats, onBook }: Props) {
                               <div>
                                 <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                                   <span className="block text-white font-medium text-sm md:text-base">
-                                    Skipper
+                                    {t("fleet.skipper", "Skipper")}
                                   </span>
                                   {selectedBoat.pricingDetails
                                     .skipperIncluded ? (
                                     <span className="inline-flex w-fit px-2 py-0.5 rounded-full bg-[#D6BB8A]/20 text-[#D6BB8A] text-[9px] sm:text-[10px] font-bold tracking-wide uppercase">
-                                      Required
+                                      {t("fleet.required", "Required")}
                                     </span>
                                   ) : (
                                     <span className="inline-flex w-fit px-2 py-0.5 rounded-full bg-white/10 text-white/70 text-[9px] sm:text-[10px] font-medium tracking-wide uppercase">
-                                      Optional
+                                      {t("fleet.optional", "Optional")}
                                     </span>
                                   )}
                                 </div>
                                 <span className="block text-white/50 text-[11px] sm:text-xs mt-1">
-                                  Professional captain
+                                  {t(
+                                    "fleet.professional_captain",
+                                    "Professional captain",
+                                  )}
                                 </span>
                               </div>
                               {selectedBoat.pricingDetails.skipperIncluded ? (
                                 <div className="col-span-2 text-right">
                                   <span className="text-white/80 font-medium text-sm leading-5">
-                                    Included in price
+                                    {t(
+                                      "fleet.included_in_price",
+                                      "Included in price",
+                                    )}
                                   </span>
                                 </div>
                               ) : (
@@ -540,23 +595,23 @@ export function FleetSection({ boats, onBook }: Props) {
                                     strokeWidth={2}
                                   />
                                   <span className="block text-[#D6BB8A] font-medium text-sm md:text-base">
-                                    Fuel
+                                    {t("fleet.fuel", "Fuel")}
                                   </span>
                                 </div>
                                 <span className="block text-white/50 text-[11px] sm:text-xs mt-1">
                                   {selectedBoat.pricingDetails.fuelIncluded
-                                    ? "Fully covered"
-                                    : "Pay per use"}
+                                    ? t("fleet.fully_covered", "Fully covered")
+                                    : t("fleet.pay_per_use", "Pay per use")}
                                 </span>
                               </div>
                               <div className="col-span-2 text-right">
                                 {selectedBoat.pricingDetails.fuelIncluded ? (
                                   <span className="inline-flex items-center rounded-full border border-[#D6BB8A]/20 bg-[#D6BB8A]/10 px-3 py-1 text-[10px] sm:text-[11px] font-bold text-[#D6BB8A] tracking-wide uppercase">
-                                    Included
+                                    {t("fleet.included", "Included")}
                                   </span>
                                 ) : (
                                   <span className="inline-flex items-center rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1 text-[10px] sm:text-[11px] font-bold text-red-400 tracking-wide uppercase">
-                                    Not Included
+                                    {t("fleet.not_included", "Not Included")}
                                   </span>
                                 )}
                               </div>
@@ -567,8 +622,10 @@ export function FleetSection({ boats, onBook }: Props) {
 
                       {!selectedBoat.pricingDetails.fuelIncluded && (
                         <p className="mt-4 text-center text-white/40 text-[13px]">
-                          The boat is provided with a full tank and must be
-                          returned full.
+                          {t(
+                            "fleet.fuel_notice",
+                            "The boat is provided with a full tank and must be returned full.",
+                          )}
                         </p>
                       )}
                     </div>
@@ -580,7 +637,7 @@ export function FleetSection({ boats, onBook }: Props) {
               <div className="absolute bottom-0 left-0 right-0 md:left-auto md:right-auto md:w-full md:max-w-4xl md:mx-auto">
                 <div className="bg-[#1C1C1E]/95 backdrop-blur-2xl rounded-t-[32px] px-6 py-5 md:py-6 sm:px-8 border-t border-white/5 shadow-[0_-20px_40px_rgba(0,0,0,0.6)]">
                   <div className="flex gap-3">
-                    <button className="w-[48px] h-[48px] rounded-full border border-white/10 flex items-center justify-center flex-shrink-0 text-white/70 hover:bg-white/5 hover:text-white hover:border-white/20 transition-all">
+                    <button aria-label="Calendar icon" className="w-[48px] h-[48px] rounded-full border border-white/10 flex items-center justify-center flex-shrink-0 text-white/70 hover:bg-white/5 hover:text-white hover:border-white/20 transition-all pointer-events-none">
                       <Calendar className="w-[18px] h-[18px]" strokeWidth={2} />
                     </button>
                     <button
@@ -590,7 +647,7 @@ export function FleetSection({ boats, onBook }: Props) {
                       }}
                       className="flex-1 h-[48px] bg-[#D6BB8A] hover:bg-[#E5CDA3] text-black font-semibold text-[15px] rounded-full transition-all shadow-lg tracking-wide"
                     >
-                      Book now
+                      {t("nav.book_now")}
                     </button>
                   </div>
                 </div>
@@ -600,94 +657,112 @@ export function FleetSection({ boats, onBook }: Props) {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {selectedImageIndex !== null && selectedBoat && selectedBoat.gallery && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-8" onClick={() => setSelectedImageIndex(null)}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="relative w-full max-w-6xl h-full flex flex-col justify-center items-center"
-              onClick={(e) => e.stopPropagation()}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.6}
-              onDragEnd={(_e, info) => {
-                const threshold = 50;
-                if (info.offset.x < -threshold) {
-                  setSelectedImageIndex((prev) => 
-                    prev !== null ? (prev + 1) % selectedBoat.gallery!.length : null
-                  );
-                } else if (info.offset.x > threshold) {
-                  setSelectedImageIndex((prev) => 
-                    prev !== null ? (prev - 1 + selectedBoat.gallery!.length) % selectedBoat.gallery!.length : null
-                  );
-                }
-              }}
+        {selectedImageIndex !== null &&
+          selectedBoat &&
+          selectedBoat.gallery && (
+            <div
+              className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-8"
+              onClick={() => setSelectedImageIndex(null)}
             >
-              <button
-                className="absolute top-4 right-4 sm:top-0 sm:right-0 w-12 h-12 bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white z-20"
-                onClick={() => setSelectedImageIndex(null)}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="relative w-full max-w-6xl h-full flex flex-col justify-center items-center"
+                onClick={(e) => e.stopPropagation()}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.6}
+                onDragEnd={(_e, info) => {
+                  const threshold = 50;
+                  if (info.offset.x < -threshold) {
+                    setSelectedImageIndex((prev) =>
+                      prev !== null
+                        ? (prev + 1) % selectedBoat.gallery!.length
+                        : null,
+                    );
+                  } else if (info.offset.x > threshold) {
+                    setSelectedImageIndex((prev) =>
+                      prev !== null
+                        ? (prev - 1 + selectedBoat.gallery!.length) %
+                          selectedBoat.gallery!.length
+                        : null,
+                    );
+                  }
+                }}
               >
-                <XIcon />
-              </button>
-
-              {selectedBoat.gallery.length > 1 && (
                 <button
-                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white z-20"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedImageIndex((prev) => 
-                      prev !== null ? (prev - 1 + selectedBoat.gallery!.length) % selectedBoat.gallery!.length : null
-                    );
-                  }}
+                  aria-label="Close gallery"
+                  className="absolute top-4 right-4 sm:top-0 sm:right-0 w-12 h-12 bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white z-20"
+                  onClick={() => setSelectedImageIndex(null)}
                 >
-                  <ArrowLeft className="w-5 h-5" />
+                  <XIcon />
                 </button>
-              )}
 
-              {selectedBoat.gallery.length > 1 && (
-                <button
-                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white z-20"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedImageIndex((prev) => 
-                      prev !== null ? (prev + 1) % selectedBoat.gallery!.length : null
-                    );
-                  }}
-                >
-                  <ArrowLeft className="w-5 h-5 rotate-180" />
-                </button>
-              )}
+                {selectedBoat.gallery.length > 1 && (
+                  <button
+                    aria-label="Previous gallery image"
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white z-20"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedImageIndex((prev) =>
+                        prev !== null
+                          ? (prev - 1 + selectedBoat.gallery!.length) %
+                            selectedBoat.gallery!.length
+                          : null,
+                      );
+                    }}
+                  >
+                    <ArrowLeft className="w-5 h-5" />
+                  </button>
+                )}
 
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={selectedImageIndex}
-                  src={selectedBoat.gallery[selectedImageIndex]}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.2 }}
-                  className="w-full h-full object-contain drop-shadow-2xl max-h-[85vh] sm:max-h-full pointer-events-none"
-                  alt="Enlarged view"
-                />
-              </AnimatePresence>
+                {selectedBoat.gallery.length > 1 && (
+                  <button
+                    aria-label="Next gallery image"
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white z-20"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedImageIndex((prev) =>
+                        prev !== null
+                          ? (prev + 1) % selectedBoat.gallery!.length
+                          : null,
+                      );
+                    }}
+                  >
+                    <ArrowLeft className="w-5 h-5 rotate-180" />
+                  </button>
+                )}
 
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                {selectedBoat.gallery.map((_, idx) => (
-                  <div
-                    key={idx}
-                    className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 ${
-                      idx === selectedImageIndex
-                        ? "bg-[#E8E4DF]"
-                        : "bg-[#E8E4DF]/20"
-                    }`}
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={selectedImageIndex}
+                    src={selectedBoat.gallery[selectedImageIndex]}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full h-full object-contain drop-shadow-2xl max-h-[85vh] sm:max-h-full pointer-events-none"
+                    alt="Enlarged view"
                   />
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        )}
+                </AnimatePresence>
+
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                  {selectedBoat.gallery.map((_, idx) => (
+                    <div
+                      key={idx}
+                      className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 ${
+                        idx === selectedImageIndex
+                          ? "bg-[#E8E4DF]"
+                          : "bg-[#E8E4DF]/20"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          )}
       </AnimatePresence>
     </section>
   );

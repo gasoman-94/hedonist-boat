@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Boat, Service } from "../types";
+import { useTranslation } from "react-i18next";
 import {
   Send,
   Smartphone,
@@ -27,6 +28,7 @@ export function BookingEngine({
   onBoatChange,
   onServiceChange,
 }: Props) {
+  const { t, i18n } = useTranslation();
   const [dateStr, setDateStr] = useState<string>("");
   const [guests, setGuests] = useState<number>(2);
   const [bookingType, setBookingType] = useState<"tour" | "rental">("tour");
@@ -292,7 +294,7 @@ export function BookingEngine({
       bookingType === "rental" &&
       activeBoat?.id !== "master-660"
     ) {
-      extraDetails = `\nDuration: ${activeService.pricing[selectedPricingIndex]?.duration || "Custom"}`;
+      extraDetails = `\nDuration: ${activeService.pricing[selectedPricingIndex]?.duration || t("booking.custom", "Custom")}`;
     }
 
     let skipperInfo = "";
@@ -300,7 +302,7 @@ export function BookingEngine({
       if (activeBoat?.id === "gaia-22") {
         skipperInfo = "\nSkipper: Included (Mandatory)";
       } else {
-        skipperInfo = `\nSkipper: ${wantsSkipper ? "Requested" : "Not requested"}`;
+        skipperInfo = `\nSkipper: ${wantsSkipper ? t("booking.requested", "Requested") : t("booking.not_requested", "Not requested")}`;
       }
     }
 
@@ -323,6 +325,9 @@ export function BookingEngine({
         <img
           src="/images/Hedonist_final-19.webp"
           alt="Booking Background"
+          width={1920}
+          height={1080}
+          loading="lazy"
           className="w-full h-full object-cover opacity-60 object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] from-0% via-[#0B0C10]/50 via-50% to-[#0B0C10] to-100%" />
@@ -331,13 +336,13 @@ export function BookingEngine({
       <div className="relative z-10 w-full max-w-[700px] mx-auto flex flex-col gap-6 lg:gap-8 items-start">
         <div className="w-full pl-2">
           <h2 className="text-4xl md:text-5xl font-semibold text-white mb-3 tracking-tight">
-            Ready to set sail?
+            {t("booking.title", "Book Your Experience")}
           </h2>
           <p className="text-white/70 text-sm md:text-base max-w-lg leading-relaxed">
-            If you've found a trip you like, or you simply want to rent a vessel
-            for your own adventure, you can easily configure your experience
-            below. Select your vessel, experience, and party size to get an
-            instant estimate and request your booking.
+            {t(
+              "booking.desc",
+              "If you've found a trip you like, or you simply want to rent a vessel for your own adventure, you can easily configure your experience below. Select your vessel, experience, and party size to get an instant estimate and request your booking.",
+            )}
           </p>
         </div>
 
@@ -345,10 +350,10 @@ export function BookingEngine({
         <div className="w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-[24px] lg:rounded-[32px] shadow-2xl p-4 sm:p-5 lg:p-8 flex flex-col gap-4 lg:gap-5 relative">
           <div className="mb-0">
             <h2 className="text-[10px] uppercase tracking-widest font-bold text-[#D6BB8A] mb-0.5">
-              Booking
+              {t("booking.booking", "Booking")}
             </h2>
             <h3 className="text-[20px] sm:text-[24px] lg:text-[28px] leading-none font-semibold tracking-tight text-white mb-1">
-              Create your journey
+              {t("booking.create_journey", "Create your journey")}
             </h3>
           </div>
 
@@ -362,7 +367,7 @@ export function BookingEngine({
                   : "text-white/50 hover:text-white"
               }`}
             >
-              Guided Tour
+              {t("booking.guided_tour", "Guided Tour")}
             </button>
             <button
               onClick={() => setBookingType("rental")}
@@ -372,7 +377,7 @@ export function BookingEngine({
                   : "text-white/50 hover:text-white"
               }`}
             >
-              Rent a Boat
+              {t("booking.rent_boat", "Rent a Boat")}
             </button>
           </div>
 
@@ -380,7 +385,7 @@ export function BookingEngine({
             {/* Vessel Selection */}
             <div>
               <label className="text-[10px] font-bold tracking-widest block mb-1.5 text-white/50 uppercase">
-                Select Vessel
+                {t("booking.select_vessel", "Select Vessel")}
               </label>
               <div className="flex bg-white/5 p-1 rounded-full w-full">
                 {availableBoats.map((boat) => (
@@ -395,6 +400,9 @@ export function BookingEngine({
                   >
                     <img
                       src={boat.imageUrl}
+                      width={24}
+                      height={24}
+                      loading="lazy"
                       className="w-6 h-6 rounded-full object-cover shrink-0"
                       alt={boat.name}
                     />
@@ -410,7 +418,7 @@ export function BookingEngine({
             {activeBoat && (
               <div className="animate-fade-in relative z-50" ref={dropdownRef}>
                 <label className="text-[10px] font-bold tracking-widest uppercase block mb-1.5 text-white/50">
-                  Select Experience
+                  {t("booking.select_experience", "Select Experience")}
                 </label>
 
                 <button
@@ -420,7 +428,12 @@ export function BookingEngine({
                   className="w-full text-left flex items-center justify-between border-b border-white/10 pb-1.5 focus:outline-none transition-colors"
                 >
                   <span className="text-[13px] sm:text-[14px] font-medium text-white pr-2">
-                    {activeService?.title || "Choose"}
+                    {activeService
+                      ? t(
+                          `trips.${activeService.id}.title`,
+                          activeService.title,
+                        )
+                      : t("booking.choose", "Choose")}
                   </span>
                   <ChevronDown
                     size={16}
@@ -441,7 +454,9 @@ export function BookingEngine({
                           }}
                           className={`w-full text-left px-4 py-3 text-[13px] font-medium transition-colors rounded-[12px] flex justify-between items-center ${activeService?.id === service.id ? "text-black bg-white cursor-default" : "text-white/70 hover:bg-white/5 hover:text-white"}`}
                         >
-                          <span>{service.title}</span>
+                          <span>
+                            {t(`trips.${service.id}.title`, service.title)}
+                          </span>
                           {activeService?.id === service.id && (
                             <Check size={14} className="text-black" />
                           )}
@@ -455,7 +470,7 @@ export function BookingEngine({
             {(activeService?.hourlyPackages?.length ?? 0) > 0 && (
               <div className="animate-fade-in relative z-10 pt-1 pb-1">
                 <label className="text-[10px] font-bold tracking-widest block mb-2 text-white/50 uppercase">
-                  Duration
+                  {t("booking.duration", "Duration")}
                 </label>
                 <div className="bg-white/5 border border-white/10 rounded-full p-2">
                   <div className="flex items-center gap-4">
@@ -479,7 +494,9 @@ export function BookingEngine({
                         {!activeService!.hourlyPackages![
                           selectedHourlyPackageIndex
                         ]?.durationLabel && (
-                          <span className="text-xs text-white/60">hours</span>
+                          <span className="text-xs text-white/60">
+                            {t("booking.hours", "hours")}
+                          </span>
                         )}
                       </div>
                       <div className="text-[11px] font-medium text-[#D6BB8A]">
@@ -519,7 +536,7 @@ export function BookingEngine({
               activeBoat?.id !== "master-660" && (
                 <div className="animate-fade-in relative z-10">
                   <label className="text-[10px] uppercase font-bold tracking-widest block mb-2 text-white/50">
-                    Duration
+                    {t("booking.duration", "Duration")}
                   </label>
                   <div className="flex flex-wrap gap-2">
                     {activeService.pricing.map((p, idx) => (
@@ -532,7 +549,8 @@ export function BookingEngine({
                             : "border-white/20 bg-transparent text-white/70 hover:bg-white/5 hover:text-white"
                         }`}
                       >
-                        {p.duration || `Option ${idx + 1}`}
+                        {p.duration ||
+                          `${t("booking.option", "Option")} ${idx + 1}`}
                       </button>
                     ))}
                   </div>
@@ -542,12 +560,15 @@ export function BookingEngine({
             {bookingType === "rental" && (
               <div className="animate-fade-in relative z-10">
                 <label className="text-[10px] uppercase font-bold tracking-widest block mb-2 text-white/50">
-                  Skipper Option
+                  {t("booking.skipper_option", "Skipper Option")}
                 </label>
                 {activeBoat?.id === "gaia-22" ? (
                   <p className="text-[#D6BB8A]/80 text-[11px] font-medium flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#D6BB8A] shrink-0" />{" "}
-                    Professional skipper included (Mandatory)
+                    {t(
+                      "booking.mandatory_skipper",
+                      "Professional skipper included (Mandatory)",
+                    )}
                   </p>
                 ) : (
                   <label
@@ -568,7 +589,10 @@ export function BookingEngine({
                     <span
                       className={`text-[11px] font-semibold ${wantsSkipper ? "text-white" : "text-white/70"}`}
                     >
-                      Request a professional skipper
+                      {t(
+                        "booking.request_skipper",
+                        "Request a professional skipper",
+                      )}
                     </span>
                   </label>
                 )}
@@ -581,7 +605,7 @@ export function BookingEngine({
                 <div className="animate-fade-in relative z-20 grid grid-cols-2 gap-4 lg:gap-5">
                   <div className="min-w-0">
                     <label className="text-[10px] font-bold tracking-widest uppercase block text-white/50 mb-1.5">
-                      Travel Date
+                      {t("booking.travel_date", "Travel Date")}
                     </label>
                     <div className="relative w-full h-[40px]" ref={calendarRef}>
                       <div
@@ -597,7 +621,7 @@ export function BookingEngine({
                         <span
                           className={`text-[12px] font-semibold ${dateStr ? "text-black" : "text-white/80"}`}
                         >
-                          {dateStr || "Select Date"}
+                          {dateStr || t("booking.select_date", "Select Date")}
                         </span>
                         <CalendarDays
                           size={14}
@@ -611,10 +635,11 @@ export function BookingEngine({
 
                   <div className="flex flex-col">
                     <label className="text-[10px] font-bold tracking-widest uppercase text-white/50 mb-1.5">
-                      Party Size
+                      {t("booking.party_size", "Party Size")}
                     </label>
                     <div className="flex justify-between items-center bg-white/5 rounded-full p-1 h-[40px] w-full">
                       <button
+                        aria-label="Decrease guests"
                         onClick={() => setGuests(Math.max(1, guests - 1))}
                         className="w-8 h-8 flex items-center justify-center text-white/60 hover:text-white transition-colors rounded-full hover:bg-white/10"
                       >
@@ -624,6 +649,7 @@ export function BookingEngine({
                         {guests}
                       </div>
                       <button
+                        aria-label="Increase guests"
                         onClick={() =>
                           setGuests(Math.min(activeBoat.capacity, guests + 1))
                         }
@@ -647,7 +673,7 @@ export function BookingEngine({
                         : "bg-white/10 text-white/40 cursor-not-allowed"
                     }`}
                   >
-                    Confirm Booking Details
+                    {t("booking.confirm_details", "Confirm Booking Details")}
                   </button>
                 </div>
               </>
@@ -668,6 +694,7 @@ export function BookingEngine({
                 Booking Summary
               </h4>
               <button
+                aria-label="Close summary"
                 onClick={() => setIsSummaryOpen(false)}
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-colors"
               >
@@ -677,20 +704,26 @@ export function BookingEngine({
 
             <div className="space-y-3 text-[13px] sm:text-[14px] font-medium text-white/80 mb-6">
               <div className="flex justify-between items-start pb-3 border-b border-white/5">
-                <span className="text-white/50">Vessel</span>
+                <span className="text-white/50">
+                  {t("booking.vessel", "Vessel")}
+                </span>
                 <span className="text-white text-right">{activeBoat.name}</span>
               </div>
               <div className="flex justify-between items-start pb-3 border-b border-white/5">
-                <span className="text-white/50">Experience</span>
+                <span className="text-white/50">
+                  {t("booking.experience", "Experience")}
+                </span>
                 <span className="text-white text-right max-w-[180px] leading-snug">
-                  {activeService.title}
+                  {t(`trips.${activeService.id}.title`, activeService.title)}
                 </span>
               </div>
 
               {activeService.hourlyPackages &&
                 activeService.hourlyPackages.length > 0 && (
                   <div className="flex justify-between items-start pb-3 border-b border-white/5">
-                    <span className="text-white/50">Duration</span>
+                    <span className="text-white/50">
+                      {t("booking.duration", "Duration")}
+                    </span>
                     <span className="text-white text-right flex flex-col items-end">
                       <span className="whitespace-nowrap">
                         {activeService.hourlyPackages[
@@ -702,7 +735,7 @@ export function BookingEngine({
                         {activeService.hourlyPackages[
                           selectedHourlyPackageIndex
                         ]?.durationLabel ||
-                          `${activeService.hourlyPackages[selectedHourlyPackageIndex]?.hours || activeService.hourlyPackages[0].hours} Hours`}
+                          `${activeService.hourlyPackages[selectedHourlyPackageIndex]?.hours || activeService.hourlyPackages[0].hours} ${t("booking.hours", "hours")}`}
                         )
                       </span>
                     </span>
@@ -714,7 +747,9 @@ export function BookingEngine({
                 bookingType === "rental" &&
                 activeBoat?.id !== "master-660" && (
                   <div className="flex justify-between items-start pb-3 border-b border-white/5">
-                    <span className="text-white/50">Duration</span>
+                    <span className="text-white/50">
+                      {t("booking.duration", "Duration")}
+                    </span>
                     <span className="text-white text-right max-w-[180px] leading-snug">
                       {activeService.pricing[selectedPricingIndex]?.duration ||
                         "Custom"}
@@ -724,52 +759,63 @@ export function BookingEngine({
 
               {bookingType === "rental" && (
                 <div className="flex justify-between items-start pb-3 border-b border-white/5">
-                  <span className="text-white/50">Skipper</span>
+                  <span className="text-white/50">
+                    {t("booking.skipper", "Skipper")}
+                  </span>
                   <span className="text-white text-right max-w-[180px] leading-snug">
                     {activeBoat?.id === "gaia-22"
-                      ? "Included (Mandatory)"
+                      ? t("booking.included_mandatory", "Included (Mandatory)")
                       : wantsSkipper
-                        ? "Requested"
-                        : "Not requested"}
+                        ? t("booking.requested", "Requested")
+                        : t("booking.not_requested", "Not requested")}
                   </span>
                 </div>
               )}
 
               <div className="flex justify-between items-start pb-3 border-b border-white/5">
-                <span className="text-white/50">Fuel</span>
+                <span className="text-white/50">
+                  {t("booking.fuel", "Fuel")}
+                </span>
                 <span className="text-white text-right max-w-[180px] leading-snug">
                   {activeBoat?.pricingDetails?.fuelIncluded
-                    ? "Included"
-                    : "Pay per use"}
+                    ? t("booking.included", "Included")
+                    : t("booking.pay_per_use", "Pay per use")}
                 </span>
               </div>
 
               <div className="flex justify-between items-start pb-3 border-b border-white/5">
-                <span className="text-white/50">Date</span>
+                <span className="text-white/50">
+                  {t("booking.date", "Date")}
+                </span>
                 <span className="text-white text-right">
-                  {dateStr || "Select date"}
+                  {dateStr || t("booking.select_date", "Select Date")}
                 </span>
               </div>
               <div className="flex justify-between items-start pb-3 border-b border-white/5">
-                <span className="text-white/50">Guests</span>
+                <span className="text-white/50">
+                  {t("booking.guests", "Guests")}
+                </span>
                 <span className="text-white text-right">
-                  {guests} {guests === 1 ? "Person" : "People"}
+                  {guests}{" "}
+                  {guests === 1
+                    ? t("booking.person", "Person")
+                    : t("booking.people", "People")}
                 </span>
               </div>
             </div>
 
             <div className="flex flex-col items-center mb-8 text-center">
               <div className="text-[11px] font-bold uppercase tracking-widest mb-1 text-white/50">
-                Total Est.
+                {t("booking.total_est", "Total Est.")}
               </div>
               <div className="text-[36px] font-medium text-white tracking-tight leading-none mb-2">
                 €{priceDetails.estimate}
               </div>
               <p className="text-[11px] text-white/40 font-medium px-4">
-                Detailed starting hours should be further arranged with the
-                skipper.
-                <br />
-                Final quotes may include requested extras.
+                {t(
+                  "booking.disclaimer",
+                  "Detailed starting hours should be further arranged with the skipper. Final quotes may include requested extras.",
+                )}
               </p>
             </div>
 
@@ -778,13 +824,13 @@ export function BookingEngine({
                 onClick={handleWhatsApp}
                 className="flex-1 bg-[#25D366] hover:bg-[#1EBE5D] text-white py-2 px-1.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-widest uppercase transition-colors flex items-center justify-center gap-1 shadow-lg text-center"
               >
-                WhatsApp
+                {t("booking.whatsapp", "WhatsApp")}
               </button>
               <button
                 onClick={handleEmail}
                 className="flex-1 bg-white/10 hover:bg-white/20 text-white py-2 px-1.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-widest uppercase transition-colors flex items-center justify-center gap-1 shadow-lg border border-white/5 text-center"
               >
-                Email
+                {t("booking.email", "Email")}
               </button>
             </div>
           </div>
@@ -800,9 +846,10 @@ export function BookingEngine({
           <div className="relative w-full max-w-sm bg-[#1A1A1A] border border-white/5 rounded-[32px] shadow-2xl p-6 lg:p-8 animate-fade-in">
             <div className="flex justify-between items-center mb-6">
               <h4 className="text-white font-semibold text-[18px]">
-                Select Date
+                {t("booking.select_date", "Select Date")}
               </h4>
               <button
+                aria-label="Close calendar"
                 onClick={() => setIsCalendarOpen(false)}
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-colors"
               >
@@ -812,6 +859,7 @@ export function BookingEngine({
 
             <div className="flex items-center justify-between mb-6">
               <button
+                aria-label="Previous month"
                 type="button"
                 onClick={handlePrevMonth}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-white/70 transition-colors cursor-pointer"
@@ -819,12 +867,13 @@ export function BookingEngine({
                 <ChevronLeft size={20} />
               </button>
               <span className="text-[15px] font-semibold text-white">
-                {calendarViewDate.toLocaleString("default", {
+                {calendarViewDate.toLocaleString(i18n.language || "en", {
                   month: "long",
                   year: "numeric",
                 })}
               </span>
               <button
+                aria-label="Next month"
                 type="button"
                 onClick={handleNextMonth}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-white/70 transition-colors cursor-pointer"
@@ -834,14 +883,27 @@ export function BookingEngine({
             </div>
 
             <div className="grid grid-cols-7 gap-2 mb-4">
-              {["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].map((day) => (
-                <div
-                  key={day}
-                  className="text-center text-[12px] font-bold tracking-wider text-white/40"
-                >
-                  {day}
-                </div>
-              ))}
+              {(() => {
+                const map: Record<string, string[]> = {
+                  en: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+                  de: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+                  hr: ["Po", "Ut", "Sr", "Če", "Pe", "Su", "Ne"],
+                  it: ["Lu", "Ma", "Me", "Gi", "Ve", "Sa", "Do"],
+                  nl: ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"],
+                  sl: ["Po", "To", "Sr", "Če", "Pe", "So", "Ne"],
+                };
+                // @ts-ignore
+                const lang = i18n.language || "en";
+                // @ts-ignore
+                return (map[lang] || map.en).map((day) => (
+                  <div
+                    key={day}
+                    className="text-center text-[12px] font-bold tracking-wider text-white/40"
+                  >
+                    {day}
+                  </div>
+                ));
+              })()}
             </div>
             <div className="grid grid-cols-7 gap-2 mb-8">
               {renderCalendarDays()}
@@ -856,7 +918,7 @@ export function BookingEngine({
               }}
               className="w-full bg-white text-black py-3.5 rounded-full text-[14px] font-semibold tracking-wide transition-all shadow-lg hover:scale-[1.02]"
             >
-              Confirm Date
+              {t("booking.confirm_date", "Confirm Date")}
             </button>
           </div>
         </div>

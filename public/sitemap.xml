@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- English (Default) -->
+  <url>
+    <loc>https://your-production-domain.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Croatian -->
+  <url>
+    <loc>https://your-production-domain.com/hr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- German -->
+  <url>
+    <loc>https://your-production-domain.com/de</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Italian -->
+  <url>
+    <loc>https://your-production-domain.com/it</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Dutch -->
+  <url>
+    <loc>https://your-production-domain.com/nl</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Slovenian -->
+  <url>
+    <loc>https://your-production-domain.com/sl</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://your-production-domain.com/en" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://your-production-domain.com/hr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://your-production-domain.com/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://your-production-domain.com/it" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://your-production-domain.com/nl" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://your-production-domain.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://your-production-domain.com/en" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+</urlset>
