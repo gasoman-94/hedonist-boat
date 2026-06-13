@@ -7,6 +7,7 @@ import { ExcursionsSection } from "./components/ExcursionsSection";
 import { TaxiSection } from "./components/TaxiSection";
 import { BookingEngine } from "./components/BookingEngine";
 import { Footer } from "./components/Footer";
+import { TestimonialsSection } from "./components/TestimonialsSection";
 import { BOATS, ALL_EXCURSIONS } from "./data";
 import { SEO } from "./components/SEO";
 
@@ -64,18 +65,21 @@ export default function App() {
           <TaxiSection boats={BOATS} onBook={handleBook} />
         </div>
         <div
-          className="snap-start w-full min-h-[100svh] flex flex-col justify-between"
+          className="snap-start w-full min-h-[100svh] flex flex-col justify-center"
           ref={bookingRef}
           id="booking-engine"
         >
+          <BookingEngine
+            boats={BOATS}
+            selectedBoatId={selectedBoatId}
+            selectedServiceId={selectedServiceId}
+            onBoatChange={setSelectedBoatId}
+            onServiceChange={setSelectedServiceId}
+          />
+        </div>
+        <div className="snap-start w-full min-h-[100svh] flex flex-col justify-between" id="testimonials">
           <div className="flex-1 flex flex-col justify-center">
-            <BookingEngine
-              boats={BOATS}
-              selectedBoatId={selectedBoatId}
-              selectedServiceId={selectedServiceId}
-              onBoatChange={setSelectedBoatId}
-              onServiceChange={setSelectedServiceId}
-            />
+            <TestimonialsSection />
           </div>
           <Footer />
         </div>
