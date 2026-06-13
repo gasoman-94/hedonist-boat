@@ -349,12 +349,12 @@ export function BookingEngine({
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] from-0% via-[#0B0C10]/50 via-50% to-[#0B0C10] to-100%" />
       </div>
 
-      <div className="relative z-10 w-full max-w-[700px] mx-auto flex flex-col gap-6 lg:gap-8 items-start">
-        <div className="w-full pl-2">
-          <h2 className="text-4xl md:text-5xl font-semibold text-white mb-3 tracking-tight">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 lg:gap-16 items-start lg:items-center">
+        <div className="w-full lg:w-1/2 pl-2 lg:pr-8">
+          <h2 className="text-4xl md:text-5xl lg:text-[64px] font-semibold text-white mb-4 lg:mb-6 tracking-tight leading-[1.1]">
             {t("booking.title", "Book Your Experience")}
           </h2>
-          <p className="text-white/70 text-sm md:text-base max-w-lg leading-relaxed">
+          <p className="text-white/70 text-sm md:text-base lg:text-[22px] max-w-lg lg:max-w-none leading-[22px] lg:leading-[34px]">
             {t(
               "booking.desc",
               "If you've found a trip you like, or you simply want to rent a vessel for your own adventure, you can easily configure your experience below. Select your vessel, experience, and party size to get an instant estimate and request your booking.",
@@ -362,13 +362,13 @@ export function BookingEngine({
           </p>
         </div>
 
-        {/* Left Form */}
-        <div className="w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-[24px] lg:rounded-[32px] shadow-2xl p-4 sm:p-5 lg:p-8 flex flex-col gap-4 lg:gap-5 relative">
+        {/* Booking Form Widget */}
+        <div className="w-full lg:w-1/2 max-w-[600px] bg-black/40 backdrop-blur-xl border border-white/10 rounded-[24px] lg:rounded-[32px] shadow-2xl p-4 sm:p-5 lg:p-8 flex flex-col gap-4 lg:gap-5 relative lg:ml-auto">
           <div className="mb-0">
             <h2 className="text-[10px] uppercase tracking-widest font-bold text-[#D6BB8A] mb-0.5">
               {t("booking.booking", "Booking")}
             </h2>
-            <h3 className="text-[20px] sm:text-[24px] lg:text-[28px] leading-none font-semibold tracking-tight text-white mb-1">
+            <h3 className="text-[20px] sm:text-[24px] lg:text-[32px] leading-tight font-semibold tracking-tight text-white mb-1">
               {t("booking.create_journey", "Create your journey")}
             </h3>
           </div>

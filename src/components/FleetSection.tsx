@@ -63,20 +63,20 @@ export function FleetSection({ boats, onBook }: Props) {
       className="h-full w-full flex flex-col justify-center pb-16 pt-16 px-4"
       id="fleet"
     >
-      <div className="w-full max-w-6xl mx-auto flex flex-col justify-center h-full max-h-[850px] relative">
+      <div className="w-full max-w-6xl mx-auto flex flex-col justify-center h-full lg:max-h-none max-h-[850px] relative">
         <div className="mb-8 px-2 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
           <div>
-            <h2 className="text-4xl md:text-5xl font-semibold text-white mb-3 tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-[64px] font-semibold text-white mb-3 lg:mb-6 tracking-tight leading-[1.1]">
               {t("nav.fleet")}
             </h2>
-            <p className="text-white/70 text-sm md:text-base max-w-lg leading-[22px]">
+            <p className="text-white/70 text-sm md:text-base lg:text-[22px] max-w-lg lg:max-w-3xl leading-[22px] lg:leading-[34px]">
               {t("hero.subtitle")}
             </p>
           </div>
         </div>
 
         <div
-          className="grid w-full mt-10 max-w-sm md:max-w-2xl mx-auto"
+          className="grid w-full mt-10 lg:mt-16 max-w-sm md:max-w-2xl lg:max-w-5xl mx-auto"
           style={{ gridTemplateAreas: '"stack"' }}
         >
           {boats.map((boat, index) => {
@@ -93,7 +93,7 @@ export function FleetSection({ boats, onBook }: Props) {
             return (
               <motion.div
                 key={boat.id}
-                className="relative rounded-[32px] md:rounded-[40px] overflow-hidden border border-white/10 w-full mb-8 origin-center transform-gpu aspect-[3/4] md:aspect-[4/5] min-h-[450px]"
+                className="relative rounded-[32px] md:rounded-[40px] overflow-hidden border border-white/10 w-full mb-8 origin-center transform-gpu aspect-[3/4] md:aspect-[4/5] lg:aspect-[16/9] min-h-[450px]"
                 style={{ gridArea: "stack", zIndex }}
                 drag={isCenter ? "x" : false}
                 dragConstraints={{ left: 0, right: 0 }}
@@ -134,17 +134,17 @@ export function FleetSection({ boats, onBook }: Props) {
                 </div>
 
                 {/* Bottom Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 flex flex-col gap-4 pointer-events-none">
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-12 flex flex-col gap-4 pointer-events-none">
                   <div>
-                    <h3 className="text-3xl font-semibold text-white tracking-tight drop-shadow-lg leading-tight">
+                    <h3 className="text-3xl lg:text-5xl font-semibold text-white tracking-tight drop-shadow-lg leading-tight">
                       {boat.name}
                     </h3>
-                    <p className="text-white/80 text-sm font-medium mt-2 drop-shadow-md line-clamp-2 max-w-sm">
+                    <p className="text-white/80 text-sm lg:text-lg lg:max-w-xl font-medium mt-2 lg:mt-4 drop-shadow-md line-clamp-2 max-w-sm">
                       {boat.tagline}
                     </p>
                   </div>
 
-                  <div className="flex gap-3 pointer-events-auto mt-2">
+                  <div className="flex gap-3 pointer-events-auto mt-2 lg:mt-6 lg:max-w-md">
                     <button
                       onClick={() => {
                         setSelectedBoat(boat);
@@ -193,17 +193,17 @@ export function FleetSection({ boats, onBook }: Props) {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="absolute inset-0 flex flex-col w-full h-full bg-[#0B0C10]"
             >
-              <div className="flex-1 overflow-y-auto pb-40">
-                <div className="relative w-full h-[55vh] md:h-[60vh] flex-shrink-0">
+              <div className="flex-1 lg:flex lg:flex-row pb-40 lg:pb-0 lg:overflow-hidden h-full relative">
+                <div className="relative w-full h-[55vh] md:h-[60vh] lg:h-full lg:w-1/2 flex-shrink-0">
                   <img
                     src={selectedBoat.imageUrl}
                     alt={selectedBoat.name}
                     width={1000}
                     height={800}
                     loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover rounded-b-[40px] md:rounded-b-[48px]"
+                    className="absolute inset-0 w-full h-full object-cover rounded-b-[40px] md:rounded-b-[48px] lg:rounded-none"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 rounded-b-[40px] md:rounded-b-[48px]" />
+                  <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/60 via-transparent lg:to-[#0B0C10] to-black/80 rounded-b-[40px] md:rounded-b-[48px] lg:rounded-none" />
 
                   <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-20">
                     <button
@@ -213,25 +213,25 @@ export function FleetSection({ boats, onBook }: Props) {
                     >
                       <ArrowLeft className="w-5 h-5" />
                     </button>
-                    <span className="font-medium text-lg drop-shadow-md tracking-wide text-white">
+                    <span className="font-medium text-lg drop-shadow-md tracking-wide text-white lg:hidden">
                       {t("fleet.overview", "Overview")}
                     </span>
-                    <div className="w-12 h-12" />{" "}
-                    {/* Empty div to maintain centered title */}
+                    <div className="w-12 h-12 lg:hidden" /> {/* Empty div to maintain centered title */}
                   </div>
                 </div>
 
-                <div className="px-6 py-6 max-w-4xl mx-auto w-full">
-                  <h3 className="text-[28px] md:text-[36px] font-semibold tracking-tight text-white mb-3 leading-tight">
-                    {selectedBoat.name}
-                  </h3>
+                <div className="lg:w-1/2 lg:h-full lg:overflow-y-auto w-full lg:pt-12 custom-scrollbar">
+                  <div className="px-6 py-6 md:py-12 max-w-4xl lg:max-w-[700px] mx-auto w-full lg:pb-32">
+                    <h3 className="text-[28px] md:text-[36px] lg:text-[48px] font-semibold tracking-tight text-white mb-3 lg:mb-4 leading-tight">
+                      {selectedBoat.name}
+                    </h3>
 
-                  <p className="text-white/70 font-medium text-[14px] leading-[20px] mb-8">
-                    {t(
-                      `fleet.boats.${selectedBoat.id}.description`,
-                      selectedBoat.description,
-                    )}
-                  </p>
+                    <p className="text-white/70 font-medium text-[14px] lg:text-[18px] leading-[20px] lg:leading-[30px] mb-8 lg:mb-12">
+                      {t(
+                        `fleet.boats.${selectedBoat.id}.description`,
+                        selectedBoat.description,
+                      )}
+                    </p>
 
                   <div className="mb-8">
                     <div className="flex justify-between items-center mb-5">
@@ -631,11 +631,12 @@ export function FleetSection({ boats, onBook }: Props) {
                     </div>
                   )}
                 </div>
+                </div>
               </div>
 
               {/* Sticky Bottom Bar */}
-              <div className="absolute bottom-0 left-0 right-0 md:left-auto md:right-auto md:w-full md:max-w-4xl md:mx-auto">
-                <div className="bg-[#1C1C1E]/95 backdrop-blur-2xl rounded-t-[32px] px-6 py-5 md:py-6 sm:px-8 border-t border-white/5 shadow-[0_-20px_40px_rgba(0,0,0,0.6)]">
+              <div className="absolute bottom-0 left-0 right-0 lg:left-1/2 lg:w-1/2 md:left-auto md:right-auto md:w-full md:max-w-4xl lg:max-w-none md:mx-auto">
+                <div className="bg-[#1C1C1E]/95 backdrop-blur-2xl rounded-t-[32px] lg:rounded-none lg:rounded-tl-[32px] px-6 py-5 md:py-6 lg:px-12 sm:px-8 border-t border-white/5 shadow-[0_-20px_40px_rgba(0,0,0,0.6)]">
                   <div className="flex gap-3">
                     <button aria-label="Calendar icon" className="w-[48px] h-[48px] rounded-full border border-white/10 flex items-center justify-center flex-shrink-0 text-white/70 hover:bg-white/5 hover:text-white hover:border-white/20 transition-all pointer-events-none">
                       <Calendar className="w-[18px] h-[18px]" strokeWidth={2} />

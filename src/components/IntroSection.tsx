@@ -35,12 +35,12 @@ export function IntroSection() {
       {/* Content Area */}
       <div className="absolute top-16 sm:top-24 left-0 right-0 w-full px-6 sm:px-12 z-10 flex flex-col justify-start max-w-7xl mx-auto gap-4 pointer-events-none">
         <div className="flex flex-col pb-4 pointer-events-auto w-full">
-          <h2 className="text-[36px] sm:text-[44px] md:text-[52px] font-semibold tracking-tight mb-4 drop-shadow-md text-white text-right w-full leading-[1.1]">
+          <h2 className="text-[36px] sm:text-[44px] md:text-[52px] lg:text-[64px] font-semibold tracking-tight mb-4 drop-shadow-md text-white text-right w-full leading-[1.1]">
             {t("intro.welcome.title")}
           </h2>
 
-          <div className="flex flex-col gap-3 w-full">
-            <p className="text-white/90 text-[14px] sm:text-[16px] leading-[22px] sm:leading-[26px] drop-shadow-sm mb-0 text-right w-full font-medium">
+          <div className="flex flex-col gap-3 w-full items-end">
+            <p className="text-white/90 text-[14px] sm:text-[16px] lg:text-[18px] leading-[22px] sm:leading-[26px] lg:leading-[32px] drop-shadow-sm mb-0 text-right w-full lg:max-w-2xl font-medium">
               {t("intro.welcome.text1")}{" "}
               <strong className="text-white font-semibold">
                 {t("intro.welcome.text1_bold")}
@@ -80,9 +80,9 @@ export function IntroSection() {
       </div>
 
       {/* Bottom Text Area */}
-      <div className="absolute bottom-28 sm:bottom-32 left-0 right-0 w-full px-6 sm:px-12 z-10 flex flex-col justify-end max-w-7xl mx-auto pointer-events-none">
+      <div className="absolute bottom-28 sm:bottom-32 lg:bottom-40 left-0 right-0 w-full px-6 sm:px-12 z-10 flex flex-col justify-end max-w-7xl mx-auto pointer-events-none">
         <div className="pb-4 pointer-events-auto">
-          <p className="text-white/90 text-[14px] sm:text-[16px] leading-[22px] sm:leading-[26px] drop-shadow-sm mb-0 text-left max-w-[300px] sm:max-w-[380px] font-medium">
+          <p className="text-white/90 text-[14px] sm:text-[16px] lg:text-[18px] leading-[22px] sm:leading-[26px] lg:leading-[32px] drop-shadow-sm mb-0 text-left max-w-[300px] sm:max-w-[380px] lg:max-w-2xl font-medium">
             {t("intro.welcome.text2")}{" "}
             <strong className="text-white font-semibold">
               {t("intro.welcome.text2_bold1")}

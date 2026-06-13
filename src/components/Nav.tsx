@@ -57,7 +57,13 @@ export function Nav() {
 
   const scrollTo = (id: string) => {
     setIsMobileMenuOpen(false);
-    const element = document.getElementById(id);
+    
+    let targetId = id;
+    if (id === "taxi" && window.innerWidth >= 1024) {
+      targetId = "taxi-widget";
+    }
+    
+    const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -76,7 +82,7 @@ export function Nav() {
         }`}
       >
         <div 
-          className={`w-[92%] md:w-[600px] lg:w-[800px] flex items-center justify-between rounded-[20px] px-3 py-1.5 transition-all duration-300 relative ${
+          className={`w-[92%] lg:w-[1200px] flex items-center justify-between rounded-[20px] px-3 lg:px-6 py-1.5 lg:py-3 transition-all duration-300 relative ${
             navMode === "glass"
               ? "bg-white/10 hover:bg-white/15 backdrop-blur-xl saturate-[1.2] border border-white/10 shadow-lg"
               : "bg-transparent border-transparent"
@@ -91,19 +97,48 @@ export function Nav() {
               alt="Hedonist Logo"
               width={160}
               height={56}
-              className="h-7 w-auto object-contain drop-shadow-md"
+              className="h-7 lg:h-8 w-auto object-contain drop-shadow-md"
             />
           </div>
-          <div className="flex items-center gap-0.5 md:gap-1">
+
+          {/* Desktop Nav Links */}
+          <div className="hidden lg:flex items-center gap-8">
+            <button
+              onClick={() => scrollTo("intro")}
+              className="text-[13px] font-bold tracking-widest uppercase text-white/70 hover:text-white transition-colors"
+            >
+              {t("nav.about")}
+            </button>
+            <button
+              onClick={() => scrollTo("fleet")}
+              className="text-[13px] font-bold tracking-widest uppercase text-white/70 hover:text-white transition-colors"
+            >
+              {t("nav.fleet")}
+            </button>
+            <button
+              onClick={() => scrollTo("excursions")}
+              className="text-[13px] font-bold tracking-widest uppercase text-white/70 hover:text-white transition-colors"
+            >
+              {t("nav.excursions")}
+            </button>
+            <button
+              onClick={() => scrollTo("taxi")}
+              className="text-[13px] font-bold tracking-widest uppercase text-white/70 hover:text-white transition-colors"
+            >
+              {t("nav.transport")}
+            </button>
+          </div>
+
+          <div className="flex items-center gap-0.5 lg:gap-4">
             <div className="relative">
               <button
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                 aria-label="Toggle language menu"
                 aria-expanded={isLangMenuOpen}
-                className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl hover:bg-white/10 text-white transition-colors"
+                className="flex items-center gap-2 px-3 lg:px-4 py-2 rounded-xl hover:bg-white/10 text-white transition-colors"
               >
                 <Globe size={18} className="text-white" />
-                <span className="text-xs font-semibold tracking-wide">
+                <span className="text-xs lg:text-[13px] font-semibold tracking-wide">
                   {currentLang.label}
                 </span>
               </button>
@@ -116,7 +151,7 @@ export function Nav() {
                         navigate("/" + lang.code, { replace: true });
                         setIsLangMenuOpen(false);
                       }}
-                      className={`text-xs font-bold tracking-wider px-4 py-2.5 rounded-xl hover:bg-white/10 transition-colors ${
+                      className={`text-xs lg:text-[13px] font-bold tracking-wider px-4 py-2.5 rounded-xl hover:bg-white/10 transition-colors ${
                         i18n.language === lang.code
                           ? "text-[#D6BB8A] bg-white/5"
                           : "text-white"
@@ -128,11 +163,21 @@ export function Nav() {
                 </div>
               )}
             </div>
+            
+            {/* Desktop Book Now */}
+            <button
+              onClick={() => scrollTo("booking-engine")}
+              className="hidden lg:flex items-center justify-center bg-white text-[#0B0C10] px-6 py-2.5 rounded-full text-[13px] font-bold tracking-widest uppercase hover:bg-white/90 transition-colors shadow-lg"
+            >
+              {t("nav.book_now")}
+            </button>
+
+            {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open mobile menu"
               aria-expanded={isMobileMenuOpen}
-              className="w-10 h-10 rounded-xl hover:bg-white/10 flex items-center justify-center transition-colors"
+              className="lg:hidden w-10 h-10 rounded-xl hover:bg-white/10 flex items-center justify-center transition-colors"
             >
               <Menu size={22} className="text-white" />
             </button>

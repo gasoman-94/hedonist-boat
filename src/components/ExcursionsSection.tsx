@@ -83,10 +83,10 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
             <span className="text-[#D6BB8A] font-bold tracking-[0.2em] uppercase text-[10px] sm:text-xs mb-2 sm:mb-4 block drop-shadow-md">
               {t("excursions.subtitle", "Curated Marine Experiences")}
             </span>
-            <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] font-semibold tracking-tight mb-2 sm:mb-4 drop-shadow-md text-white text-left leading-[1.1]">
+            <h2 className="text-[28px] sm:text-[36px] lg:text-[64px] font-semibold tracking-tight mb-2 sm:mb-4 drop-shadow-md text-white text-left leading-[1.1]">
               {t("nav.excursions")}
             </h2>
-            <p className="text-white/90 text-[14px] leading-[22px] drop-shadow-sm mb-0 text-left font-medium pr-2">
+            <p className="text-white/90 text-[14px] lg:text-[22px] leading-[22px] lg:leading-[34px] drop-shadow-sm mb-0 text-left font-medium pr-2 max-w-[800px]">
               {t(
                 "excursions.description",
                 "Let us take the helm while you simply sit back and enjoy. From intimate sunset cruises to exhilarating island-hopping adventures, our bespoke, predefined tours with seasoned skippers are tailored for those who want to discover the Adriatic in pure relaxation.",
@@ -322,7 +322,7 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-              className="relative w-full h-[100dvh] sm:max-w-[420px] sm:h-auto sm:max-h-[85vh] bg-[#111111] sm:rounded-[40px] overflow-hidden shadow-2xl flex flex-col mx-auto border-0 sm:border sm:border-white/10 z-10 overscroll-y-contain"
+              className="relative w-full h-[100dvh] sm:max-w-[420px] sm:h-[85vh] lg:max-w-[1000px] lg:h-[80vh] bg-[#111111] sm:rounded-[40px] overflow-hidden shadow-2xl flex flex-col mx-auto border-0 sm:border sm:border-white/10 z-10 overscroll-y-contain"
             >
               {/* Sticky Header Buttons */}
               <div className="absolute top-0 inset-x-0 flex justify-between items-center p-6 pt-12 sm:pt-6 z-20 pointer-events-none">
@@ -338,8 +338,8 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                 </button>
               </div>
 
-              <div className="relative z-10 flex flex-col h-full overflow-y-auto no-scrollbar">
-                <div className="relative w-full h-[60vh] sm:h-[480px] shrink-0">
+              <div className="relative z-10 flex flex-col lg:flex-row h-full overflow-y-auto lg:overflow-hidden no-scrollbar">
+                <div className="relative w-full h-[60vh] sm:h-[480px] lg:h-full lg:w-1/2 shrink-0">
                   <img
                     src={getImageUrl(
                       selectedExcursion.id,
@@ -352,10 +352,11 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                     className="w-full h-full object-cover object-top"
                   />
                   <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black/50 via-black/20 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#111111] to-transparent pointer-events-none" />
+                  <div className="absolute bottom-0 lg:hidden inset-x-0 h-32 bg-gradient-to-t from-[#111111] to-transparent pointer-events-none" />
+                  <div className="hidden lg:block absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#111111] to-transparent pointer-events-none" />
                 </div>
 
-                <div className="px-6 sm:px-8 pb-8 flex-shrink-0 bg-[#111111] -mt-6 pt-8 rounded-t-3xl relative z-10">
+                <div className="px-6 sm:px-8 lg:px-12 pb-8 lg:pb-12 flex-shrink-0 bg-[#111111] -mt-6 lg:mt-0 pt-8 lg:pt-12 lg:w-1/2 lg:h-full lg:overflow-y-auto rounded-t-3xl lg:rounded-none relative z-10 custom-scrollbar flex flex-col">
                   {/* Pill Content */}
                   <div className="flex items-center mb-4">
                     <div className="bg-white/10 backdrop-blur-md rounded-full px-3 py-1.5 flex items-center gap-2 border border-white/10">
@@ -375,7 +376,7 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                   </div>
 
                   {/* Title */}
-                  <h2 className="text-[28px] sm:text-[32px] font-bold text-white tracking-tight mb-3 leading-[1.1]">
+                  <h2 className="text-[28px] sm:text-[32px] lg:text-[48px] font-bold text-white tracking-tight mb-3 lg:mb-4 leading-[1.1]">
                     {t(
                       `trips.${selectedExcursion.id}.title`,
                       selectedExcursion.title,
@@ -385,21 +386,21 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                   {/* Location & Rating */}
                   <div className="flex flex-wrap items-center gap-2 mb-6">
                     <MapPin size={14} className="text-white/60" />
-                    <span className="text-white/80 text-[13px] font-medium">
+                    <span className="text-white/80 text-[13px] lg:text-[15px] font-medium">
                       Istrian Coast
                     </span>
                     {getBoatDetails(selectedExcursion.boatId) && (
                       <>
                         <div className="w-1 h-1 rounded-full bg-white/30 mx-1" />
                         <Anchor size={14} className="text-white/60" />
-                        <span className="text-white/80 text-[13px] font-medium">
+                        <span className="text-white/80 text-[13px] lg:text-[15px] font-medium">
                           {getBoatDetails(selectedExcursion.boatId)?.name}
                         </span>
                       </>
                     )}
                   </div>
 
-                  <div className="flex flex-col gap-6 mb-8 font-medium pr-2 text-white/70 text-[14px]">
+                  <div className="flex flex-col gap-6 mb-8 font-medium pr-2 text-white/70 text-[14px] lg:text-[18px]">
                     {selectedExcursion.highlights &&
                       selectedExcursion.highlights.length > 0 && (
                         <div>
@@ -692,15 +693,17 @@ export function ExcursionsSection({ excursions, boats, onBook }: Props) {
                   </div>
 
                   {/* Book Action */}
-                  <button
-                    className="w-full bg-white hover:bg-gray-100 text-[#1A1A1A] font-bold text-[15px] uppercase py-[18px] rounded-full shadow-lg active:scale-95 transition-transform"
-                    onClick={() => {
-                      onBook(selectedExcursion.boatId, selectedExcursion.id);
-                      setSelectedExcursion(null);
-                    }}
-                  >
-                    {t("nav.book_now", "BOOK NOW")}
-                  </button>
+                  <div className="mt-auto pt-8">
+                    <button
+                      className="w-full bg-white hover:bg-gray-100 text-[#1A1A1A] font-bold text-[15px] uppercase py-[18px] rounded-full shadow-lg active:scale-95 transition-transform"
+                      onClick={() => {
+                        onBook(selectedExcursion.boatId, selectedExcursion.id);
+                        setSelectedExcursion(null);
+                      }}
+                    >
+                      {t("nav.book_now", "BOOK NOW")}
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>

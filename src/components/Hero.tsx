@@ -16,36 +16,39 @@ export function Hero() {
     <section className="relative h-[100svh] w-full overflow-hidden bg-[#0B0C10] text-white font-sans">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/images/hedo_hero_cut_real.webp"
-          alt="Hero Background"
-          width={1920}
-          height={1080}
-          className="w-full h-full object-cover object-center"
-        />
+        <picture>
+          <source media="(min-width: 1024px)" srcSet="/images/Hedonist_final-31.webp" />
+          <img
+            src="/images/hedo_hero_cut_real.webp"
+            alt="Hero Background"
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover object-center"
+          />
+        </picture>
         {/* Soft gradient overlay for text readability and smooth section transition */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent via-50% to-[#0B0C10] to-90%" />
       </div>
 
       {/* Top Logo Area */}
-      <div className="absolute top-12 sm:top-16 left-0 right-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none">
+      <div className="absolute top-12 sm:top-16 lg:top-24 left-0 right-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none">
         <img
           src="/images/logobwnuni.png"
           alt="Hedonist Yachting"
           width={400}
           height={200}
-          className="h-32 sm:h-40 w-auto object-contain drop-shadow-xl"
+          className="h-32 sm:h-40 lg:h-28 w-auto object-contain drop-shadow-xl"
         />
       </div>
 
       {/* Bottom Content Area */}
-      <div className="absolute bottom-6 sm:bottom-10 left-0 right-0 w-full px-6 sm:px-12 z-10 flex items-end justify-between max-w-7xl mx-auto gap-4">
-        <div className="flex flex-col items-start pb-4">
-          <h1 className="text-[36px] sm:text-[44px] font-semibold tracking-tight mb-4 drop-shadow-md text-white text-left w-[300px] sm:w-[380px] leading-[1.1]">
+      <div className="absolute bottom-6 sm:bottom-10 lg:bottom-16 left-0 right-0 w-full px-6 sm:px-12 lg:px-24 z-10 flex items-end justify-between max-w-[1400px] mx-auto gap-4">
+        <div className="flex flex-col items-start pb-4 lg:pb-0">
+          <h1 className="text-[36px] sm:text-[44px] lg:text-[72px] lg:w-[800px] font-semibold tracking-tight mb-4 drop-shadow-md text-white text-left w-[300px] sm:w-[380px] leading-[1.1]">
             {t("hero.title")}
           </h1>
 
-          <p className="text-white/90 text-[14px] sm:text-[16px] leading-[22px] sm:leading-[26px] drop-shadow-sm mb-0 text-left w-[300px] sm:w-[380px] font-medium pr-2">
+          <p className="text-white/90 text-[14px] sm:text-[16px] lg:text-[18px] leading-[22px] sm:leading-[26px] lg:leading-[32px] drop-shadow-sm mb-0 text-left w-[300px] sm:w-[380px] lg:w-[600px] font-medium pr-2">
             {t("hero.subtitle")}
           </p>
         </div>

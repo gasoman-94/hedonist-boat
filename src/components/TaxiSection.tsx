@@ -58,7 +58,7 @@ export function TaxiSection({ boats, onBook }: Props) {
   return (
     <>
       <section
-        className="snap-start relative w-full h-[100svh] flex flex-col"
+        className="snap-start relative w-full h-[100svh] flex-col lg:hidden flex"
         id="taxi"
       >
         {/* Background Image Slide 1 */}
@@ -77,7 +77,7 @@ export function TaxiSection({ boats, onBook }: Props) {
         {/* Bottom Content Area */}
         <div className="absolute bottom-6 sm:bottom-10 left-0 right-0 w-full px-6 sm:px-12 z-10 flex items-end justify-between max-w-7xl mx-auto gap-4">
           <div className="flex flex-col items-start pb-4">
-            <h2 className="text-[32px] sm:text-[32px] font-semibold tracking-tight mb-4 drop-shadow-md text-white text-left w-[260px] leading-tight">
+            <h2 className="text-[64px] leading-[70.4px] font-semibold tracking-tight mb-4 drop-shadow-md text-white text-left w-[260px]">
               {t("taxi.title")}
             </h2>
 
@@ -145,18 +145,21 @@ export function TaxiSection({ boats, onBook }: Props) {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] from-0% via-[#0B0C10]/50 via-50% to-[#0B0C10] to-100%" />
         </div>
 
-        <div className="relative z-10 w-full max-w-md mx-auto">
-          <div className="mb-8 text-left pl-2 pr-4">
-            <h2 className="text-[24px] font-semibold tracking-tight text-white mb-3">
-              {t("taxi.on_demand", "On-Demand Transfers")}
-            </h2>
-            <p className="text-white/80 text-[13px] leading-relaxed font-medium">
-              {t("taxi.on_demand_desc", "Our boat transfer services are strictly on demand. Simply choose your destination from the available options and reach out to us on WhatsApp anytime to arrange your ride.")}
-            </p>
+        <div className="relative z-10 w-full max-w-md lg:max-w-6xl mx-auto lg:flex lg:items-center lg:gap-16">
+          <div className="flex-1">
+            <div className="mb-8 lg:mb-12 text-left pl-2 pr-4">
+              <h2 className="text-[24px] lg:text-[64px] font-semibold tracking-tight text-white mb-3 lg:mb-6 leading-[1.1]">
+                {t("taxi.on_demand", "On-Demand Transfers")}
+              </h2>
+              <p className="text-white/80 text-[13px] lg:text-[22px] leading-relaxed lg:leading-[34px] font-medium max-w-xl">
+                {t("taxi.on_demand_desc", "Our boat transfer services are strictly on demand. Simply choose your destination from the available options and reach out to us on WhatsApp anytime to arrange your ride.")}
+              </p>
+            </div>
           </div>
 
-          <div className="flex items-center gap-3 mb-6 justify-start pl-2">
-            <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-white/20 shadow-md">
+          <div className="flex-1 w-full relative">
+            <div className="flex items-center gap-3 mb-6 justify-start pl-2">
+            <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-full overflow-hidden shrink-0 border border-white/20 shadow-md">
               <img
                 src={taxiBoat.imageUrl}
                 alt={taxiBoat.name}
@@ -167,63 +170,63 @@ export function TaxiSection({ boats, onBook }: Props) {
               />
             </div>
             <div className="text-left">
-              <p className="text-[9px] uppercase font-bold tracking-widest text-[#D6BB8A] mb-0.5">
+              <p className="text-[9px] lg:text-[11px] uppercase font-bold tracking-widest text-[#D6BB8A] mb-0.5 lg:mb-1">
                 {t("taxi.operated_by", "Operated by")}
               </p>
-              <p className="font-semibold text-[13px] tracking-tight text-white">
+              <p className="font-semibold text-[13px] lg:text-[18px] tracking-tight text-white">
                 {taxiBoat.name}
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-[24px] p-5 sm:p-6 shadow-2xl relative">
+          <div className="flex flex-col w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-[24px] lg:rounded-[32px] p-5 sm:p-6 lg:p-8 shadow-2xl relative">
             {/* Starting Location */}
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center shrink-0">
-                <span className="w-2 h-2 bg-black rounded-full" />
+            <div className="flex items-center gap-3 lg:gap-4 mb-2 lg:mb-4">
+              <div className="w-7 h-7 lg:w-10 lg:h-10 rounded-full bg-white flex items-center justify-center shrink-0">
+                <span className="w-2 h-2 lg:w-3 lg:h-3 bg-black rounded-full" />
               </div>
               <div>
-                <p className="text-[9px] font-bold tracking-widest text-white/50 uppercase mb-0.5">
+                <p className="text-[9px] lg:text-[11px] font-bold tracking-widest text-white/50 uppercase mb-0.5 lg:mb-1">
                   {t("taxi.pickup")}
                 </p>
-                <p className="text-[14px] font-bold text-white tracking-tight">
+                <p className="text-[14px] lg:text-[20px] font-bold text-white tracking-tight">
                   Poreč Harbour
                 </p>
               </div>
             </div>
 
             {/* Connecting Line */}
-            <div className="pl-[13px] my-1.5">
-              <div className="w-[1.5px] h-5 border-l-[1.5px] border-white/20 border-dotted" />
+            <div className="pl-[13px] lg:pl-[19px] my-1.5 lg:my-3">
+              <div className="w-[1.5px] lg:w-[2px] h-5 lg:h-8 border-l-[1.5px] lg:border-l-[2px] border-white/20 border-dotted" />
             </div>
 
             {/* Drop Off */}
-            <div className="flex items-center gap-3 mb-6" ref={dropdownRef}>
-              <div className="w-7 h-7 rounded-full bg-[#D6BB8A] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(214,187,138,0.3)]">
-                <MapPin size={12} className="text-black" strokeWidth={2.5} />
+            <div className="flex items-center gap-3 lg:gap-4 mb-6 lg:mb-8" ref={dropdownRef}>
+              <div className="w-7 h-7 lg:w-10 lg:h-10 rounded-full bg-[#D6BB8A] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(214,187,138,0.3)]">
+                <MapPin size={12} className="text-black lg:w-5 lg:h-5" strokeWidth={2.5} />
               </div>
               <div className="flex-1 relative">
-                <p className="text-[9px] font-bold tracking-widest text-[#D6BB8A] uppercase mb-0.5">
+                <p className="text-[9px] lg:text-[11px] font-bold tracking-widest text-[#D6BB8A] uppercase mb-0.5 lg:mb-1">
                   {t("taxi.dropoff")}
                 </p>
 
                 {/* Custom Dropdown Trigger */}
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-full text-left flex items-center justify-between border-b border-white/20 pb-1.5 focus:outline-none focus:border-white transition-colors"
+                  className="w-full text-left flex items-center justify-between border-b border-white/20 pb-1.5 lg:pb-3 focus:outline-none focus:border-white transition-colors"
                 >
-                  <span className="text-[16px] font-bold text-white tracking-tight line-clamp-1 pr-2">
+                  <span className="text-[16px] lg:text-[24px] font-bold text-white tracking-tight line-clamp-1 pr-2">
                     {selectedRoute.description}
                   </span>
                   <ChevronDown
                     size={14}
-                    className={`text-white transition-transform duration-300 shrink-0 ${isDropdownOpen ? "rotate-180" : ""}`}
+                    className={`text-white lg:w-6 lg:h-6 transition-transform duration-300 shrink-0 ${isDropdownOpen ? "rotate-180" : ""}`}
                   />
                 </button>
 
                 {/* Dropdown Menu */}
                 {isDropdownOpen && (
-                  <div className="absolute top-[calc(100%+6px)] left-0 right-0 bg-[#141414] border border-white/10 rounded-[12px] shadow-2xl max-h-[180px] overflow-y-auto z-50 overflow-hidden custom-scrollbar">
+                  <div className="absolute top-[calc(100%+6px)] left-0 right-0 bg-[#141414] border border-white/10 rounded-[12px] shadow-2xl max-h-[180px] lg:max-h-[240px] overflow-y-auto z-50 overflow-hidden custom-scrollbar">
                     {taxiService.pricing.map((route, i) => (
                       <button
                         key={i}
@@ -231,7 +234,7 @@ export function TaxiSection({ boats, onBook }: Props) {
                           setSelectedRouteIndex(i);
                           setIsDropdownOpen(false);
                         }}
-                        className={`w-full text-left px-4 py-2.5 text-[13px] font-medium hover:bg-white/5 transition-colors ${i === selectedRouteIndex ? "text-[#D6BB8A] bg-white/5" : "text-white"}`}
+                        className={`w-full text-left px-4 py-2.5 lg:py-3.5 text-[13px] lg:text-[16px] font-medium hover:bg-white/5 transition-colors ${i === selectedRouteIndex ? "text-[#D6BB8A] bg-white/5" : "text-white"}`}
                       >
                         {route.description}
                       </button>
@@ -242,20 +245,20 @@ export function TaxiSection({ boats, onBook }: Props) {
             </div>
 
             {/* Passengers & Price Info */}
-            <div className="flex flex-col gap-3 pt-5 border-t border-white/10">
+            <div className="flex flex-col gap-3 lg:gap-6 pt-5 lg:pt-8 border-t border-white/10">
               <div className="flex justify-between items-center w-full px-2">
                 <div>
-                  <p className="text-[11px] font-medium text-white/50 mb-2">
+                  <p className="text-[11px] lg:text-[13px] font-medium text-white/50 mb-2 lg:mb-3">
                     {t("taxi.passengers", "Passengers")}
                   </p>
-                  <div className="flex items-center gap-3 bg-white/5 rounded-full p-1.5 border border-white/10 w-fit">
+                  <div className="flex items-center gap-3 lg:gap-4 bg-white/5 rounded-full p-1.5 lg:p-2 border border-white/10 w-fit">
                     <button
                       onClick={() => setPassengers(Math.max(1, passengers - 1))}
-                      className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+                      className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white lg:text-lg transition-colors"
                     >
                       -
                     </button>
-                    <span className="font-bold text-white text-[16px] w-6 text-center">
+                    <span className="font-bold text-white text-[16px] lg:text-[20px] w-6 lg:w-8 text-center">
                       {passengers}
                     </span>
                     <button
@@ -264,7 +267,7 @@ export function TaxiSection({ boats, onBook }: Props) {
                           Math.min(taxiBoat.capacity, passengers + 1),
                         )
                       }
-                      className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+                      className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white lg:text-lg transition-colors"
                     >
                       +
                     </button>
@@ -272,30 +275,31 @@ export function TaxiSection({ boats, onBook }: Props) {
                 </div>
 
                 <div className="text-right">
-                  <p className="text-[11px] font-medium text-white/50 mb-1">
+                  <p className="text-[11px] lg:text-[13px] font-medium text-white/50 mb-1 lg:mb-2">
                     {t("taxi.total", "Total")}
                   </p>
                   <div className="flex items-baseline justify-end gap-1.5">
-                    <span className="font-bold text-[36px] sm:text-[42px] tracking-tight text-white leading-none">
+                    <span className="font-bold text-[36px] sm:text-[42px] lg:text-[56px] tracking-tight text-white leading-none">
                       €{totalPrice}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="w-full flex flex-col items-center mt-3">
-                <p className="text-[10px] font-medium text-white/50 mb-4 text-center">
+              <div className="w-full flex flex-col items-center mt-3 lg:mt-4">
+                <p className="text-[10px] lg:text-[13px] font-medium text-white/50 mb-4 lg:mb-6 text-center">
                   €{selectedRoute.amount} {t("taxi.per_person", "per person")} • {t("taxi.min", "Min.")} €
                   {selectedRoute.minPrice}
                 </p>
                 <button
                   onClick={handleWhatsApp}
-                  className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3 rounded-full text-[10px] font-bold tracking-widest uppercase transition-colors flex items-center justify-center gap-2 shadow-lg"
+                  className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3 lg:py-5 rounded-full text-[10px] lg:text-[14px] font-bold tracking-widest uppercase transition-colors flex items-center justify-center gap-2 shadow-lg"
                 >
-                  {t("taxi.request_whatsapp", "Request a ride via WhatsApp")} <MessageCircle size={14} />
+                  {t("taxi.request_whatsapp", "Request a ride via WhatsApp")} <MessageCircle size={14} className="lg:w-5 lg:h-5" />
                 </button>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>
